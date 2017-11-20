@@ -1,15 +1,15 @@
-package Groups;
-import java.util.Date;
+package group;
+
+import java.sql.Date;
+
 public class Group {
     private String profesor;
-    private String Materia;
-    private Integer CantidadAlumnos;
+    private String materia;
     private Date horario;
 
-    public Group(String p , String m, Integer c, Date h) {
+    public Group(String p , String m, Date h) {
         this.profesor = p;
-        this.Materia = m;
-        this.CantidadAlumnos = c;
+        this.materia = m;
         this.horario =  h;
     }
 
@@ -21,11 +21,7 @@ public class Group {
     }
     
     public void setMateria(String m){
-        this.Materia = m;
-    }
-    
-    public void setCantidadAlumnos(Integer c){
-         this.CantidadAlumnos = c;
+        this.materia = m;
     }
     
     public void setHorario(Date h){
@@ -37,11 +33,7 @@ public class Group {
     }
     
     public String getMateria(){
-        return Materia;
-    }
-    
-    public Integer getCantidadAlumnos(){
-        return CantidadAlumnos;
+        return materia;
     }
     
     public Date getHorario(){

@@ -1,4 +1,4 @@
-<%@ page import="Groups.Group" %>
+<%@ page import="group.Group" %>
 <%@ include file="/header.jsp" %>
         <h1>Lista de Grupos</h1>
         <table id="groups">
@@ -10,4 +10,5 @@
                 <th>Cantidad de alumnos</th>
             </tr>
         </table>
+        <button conclick="goBack()">Index</button>
 <%@ include file="/footer.jsp" %>

@@ -3,6 +3,7 @@
 <head>
     <title>Sistema de Inscripciones</title>
     <style>
+        input:invalid{background: red}
         #groups {
             font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
             border-collapse: collapse;

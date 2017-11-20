@@ -1,4 +1,4 @@
-package Groups;
+package group;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,10 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class BuscarEnBD {
+public class Buscarenbd {
      Connection db;
 
-    public BuscarEnBD() throws SQLException {
+    public Buscarenbd() throws SQLException {
         db = DriverManager.getConnection("jdbc:mysql://localhost/administrador?user=root");
     }
 
@@ -19,7 +19,6 @@ public class BuscarEnBD {
 
         stmt.setString(1, g.getMateria());
         stmt.setString(2, g.getProfesor());
-        stmt.setInt(3, g.getCantidadAlumnos());
         stmt.setDate(4, g.getHorario());
 
         ResultSet res = stmt.executeQuery();
