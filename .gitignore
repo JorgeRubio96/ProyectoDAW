@@ -22,3 +22,6 @@
 hs_err_pid*
 /SistemaInscripciones/nbproject/private/
 /SistemaInscripciones/build/
+
+.vscode
+dist
