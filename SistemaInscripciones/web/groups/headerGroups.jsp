@@ -37,10 +37,16 @@
         }
     </style>
     <script>
+        window.onload = initForm;
         function goBack(){
             window.history.back();
         }
+        function initForm(){
+            document.forms[0].onsubmit = validarForma;
+        }
+        
     </script>
+    <script type="text/javascript" src="src\java\group\update.js"></script>
 </head>
 
 <body>

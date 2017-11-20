@@ -10,5 +10,6 @@
                 <th>Cantidad de alumnos</th>
             </tr>
         </table>
+        <br>
         <button conclick="goBack()">Index</button>
 <%@ include file="/footer.jsp" %>

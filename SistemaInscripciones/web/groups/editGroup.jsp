@@ -8,18 +8,20 @@
 <% Group group = (Group) request.getAttribute("group"); %>
 <form name="editGroup" id="editGroup" action="" onSubmit="return ValidarForma(this);">
     <br>
-    Clave:<input type="text" name="clave" required value="">
+    Clave:<input type="text" name="clave" id="clave" required value="">
     <br>
-    Materia:<input type="text" name="materia" required value="<%= group.getMateria() %>"/>
+    Materia:<input type="text" name="materia" id="materia" required value="<%= group.getMateria() %>"/>
     <br>
-    Profesor:<input type="text" name="profesor" required value="<%= group.getProfesor() %>">
+    Profesor:<input type="text" name="profesor" id="profesor" required value="<%= group.getProfesor() %>">
     <br>
-    Horario:<input type="text" name="horario" required value="<%= group.getHorario() %>">
+    Horario:<input type="text" name="horario" id="horario" hint="aaaa-mm-dd" pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])" required value="<%= group.getHorario() %>">
     <br>
     <br>
     <input type="submit" value="enviar">
     <button type="reset" value="Borrar">Borrar</button>
 </form>
     <button onclick="goBack()">Cancelar</button>
+    <a href="/listGroups.jsp">Cancelar</a>
+    <button type="button" id="cancelbtn" >Cancelar</button>
     <p>Al dar clic en Submit se registraran los cambios</p>
 <%@ include file="/footer.jsp" %>
