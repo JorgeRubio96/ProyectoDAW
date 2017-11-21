@@ -1,4 +1,3 @@
-<%@ page import="group.Group" %>
 <%@ include file="/header.jsp" %>
         <h1>Lista de Grupos</h1>
         <a href="createGroup.jsp">Crear grupo</a>
@@ -18,5 +17,5 @@
         <br>
         <a href="reportGroup.jsp">Reporte por grupos</a>
         <br>
-        <button conclick="goBack()">Index</button>
+        <button onclick="goBack()">Index</button>
 <%@ include file="/footer.jsp" %>

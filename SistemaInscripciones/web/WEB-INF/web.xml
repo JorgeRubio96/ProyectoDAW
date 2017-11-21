@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>mx.tec.inscripciones.servlet.LoginServlet</servlet-class>
@@ -10,17 +8,14 @@
         <servlet-name>MainServlet</servlet-name>
         <servlet-class>mx.tec.inscripciones.servlet.MainServlet</servlet-class>
     </servlet>
-<<<<<<< HEAD
-     <servlet>
+    <servlet>
         <servlet-name>AddToDataBaseServlet</servlet-name>
-        <servlet-class>group.AddToDataBaseServlet</servlet-class>    
+        <servlet-class>mx.tec.inscripciones.servlet.AddToDataBaseServlet</servlet-class>
     </servlet>
-=======
     <servlet>
         <servlet-name>UpdateToDataBaseServlet</servlet-name>
-        <servlet-class>group.UpdateToDataBaseServlet</servlet-class>  
-    </servlet>  
->>>>>>> ff168dd56dbb0d766d825621e58ad3097159d1a8
+        <servlet-class>mx.tec.inscripciones.servlet.UpdateToDataBaseServlet</servlet-class>
+    </servlet>
     <!-- the mapping for the servlets -->
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -28,15 +23,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>MainServlet</servlet-name>
-        <url-pattern></url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>UpdateToDataBaseServlet</servlet-name>
-        <url-pattern>/group/UpdateToDataBaseServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>AddToDataBaseServlet</servlet-name>
-        <url-pattern>/group/AddToDataBaseServlet</url-pattern>
+        <url-pattern/>
     </servlet-mapping>
     <!--Config. of the session and cookies-->
     <session-config>

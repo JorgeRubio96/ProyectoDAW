@@ -21,5 +21,5 @@
         </table>
         </form>
         <br>
-        <button conclick="goBack()">Index</button>
+        <button onclick="goBack()">Regresar</button>
 <%@ include file="/footer.jsp" %>
