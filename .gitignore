@@ -29,3 +29,4 @@ dist
 .DS_Store
 
 !/SistemaInscripciones/lib/*.jar
+/SistemaInscripciones/web/META-INF/context.xml
