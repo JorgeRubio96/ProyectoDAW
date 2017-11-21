@@ -1,10 +1,12 @@
-package group;
+package mx.tec.inscripciones;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import mx.tec.inscripciones.model.Group;
 
 public class Buscarenbd {
      Connection db;

@@ -1,4 +1,4 @@
-package group;
+package mx.tec.inscripciones.model;
 
 import java.sql.Date;
 
