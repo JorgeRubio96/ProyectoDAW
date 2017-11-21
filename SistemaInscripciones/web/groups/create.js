@@ -1,4 +1,3 @@
-var form;
 var table;
 var count=0;
 
@@ -26,3 +25,4 @@ function borrarFila(c){
     table.removeChild(row);
     return false;
 }
+
