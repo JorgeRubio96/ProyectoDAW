@@ -6,18 +6,18 @@ public class Class {
     private int id;
     private int courseId;
     private int teacherId;
-    private int classroomId;
     private List<TimeSlot> times;
+    private int groupNumber;
     
-    public Class(int id, int courseId, int teacherId, List<TimeSlot> times) {
+    public Class(int id, int courseId, int teacherId, int groupNumber, List<TimeSlot> times) {
         this.id = id;
         this.courseId = courseId;
         this.teacherId = teacherId;
         this.times = times;
     }
     
-    public Class(int courseId, int teacherId, List<TimeSlot> times) {
-        this(-1, courseId, teacherId, times);
+    public Class(int courseId, int teacherId, int groupNumber, List<TimeSlot> times) {
+        this(-1, courseId, teacherId, groupNumber, times);
     }
     
     public void setId(int id) {
@@ -26,14 +26,6 @@ public class Class {
 
     public int getId() {
         return id;
-    }
-
-    public void setClassroomId(int classroomId){
-        this.classroomId = classroomId;
-    }
-
-    public int getClassroomId(){
-        return classroomId;
     }
     
     public void setCourseId(int courseId){
@@ -60,4 +52,11 @@ public class Class {
         return times;
     }
     
+    public int getGroupNumber() {
+        return groupNumber;
+    }
+
+    public void setGroupNumber(int number) {
+        this.groupNumber = number;
+    }
 }

@@ -25,13 +25,14 @@ public class ClassStore extends BaseStore<Class> {
 
     @Override
     public boolean add(Class aClass) throws SQLException {
-        String sql = "INSERT INTO " + TABLE + "(course_id, teacher_id) VALUES (?, ?,)";
+        String sql = "INSERT INTO " + TABLE + "(course_id, teacher_id, group_number) VALUES (?, ?, ?)";
         
         PreparedStatement stmt = getDatabase().prepareStatement(sql);
         
-        stmt.setInt(1, aClass.getClassroomId());
-        stmt.setInt(2, aClass.getCourseId());
-        
+        stmt.setInt(1, aClass.getCourseId());
+        stmt.setInt(2, aClass.getTeacherId());
+        stmt.setInt(3, aClass.getGroupNumber());
+
         stmt.executeUpdate();
 
         ResultSet rs = stmt.getGeneratedKeys();
@@ -64,6 +65,7 @@ public class ClassStore extends BaseStore<Class> {
         int id = rs.getInt("id");
         int courseId = rs.getInt("course_id");
         int teacherId = rs.getInt("teacher_id");
+        int groupNumber = rs.getInt("group_number");
         
         ArrayList<TimeSlot> times = new ArrayList();
 
@@ -80,6 +82,6 @@ public class ClassStore extends BaseStore<Class> {
             times.add(new TimeSlot(timeSlotId, beginTime, endTime, day, classroomId));
         }
         
-        return new Class(id, courseId, teacherId, times);
+        return new Class(id, courseId, teacherId, groupNumber, times);
     }
 }
