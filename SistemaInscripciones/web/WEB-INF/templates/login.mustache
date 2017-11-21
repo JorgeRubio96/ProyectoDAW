@@ -1,9 +1,12 @@
-{{<base}}
+{{<base-template}}
 {{$content}}
-<form action="/login" method="post">
-    <input type="text" name="username">
-    <input type="password" name="password">
-    <button action="submit">Iniciar Sesi&oacute;n</button>
-</form>
+    {{#hasError}}
+        <p>{{error}}</p>
+    {{/hasError}}
+    <form action="login" method="post">
+        <input type="text" name="username"></br>
+        <input type="password" name="password"></br>
+        <button action="submit">Iniciar Sesi&oacute;n</button>
+    </form>
 {{/content}}
-{{/base}}
+{{/base-template}}

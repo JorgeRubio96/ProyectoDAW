@@ -1,53 +1,25 @@
 package mx.tec.inscripciones.store;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.sql.SQLException;
 
 import mx.tec.inscripciones.PasswordStorage;
 import mx.tec.inscripciones.model.User;
 
-public class UserStore {
-    private final String TABLE = "user";
-    private final Connection dbc;
+public class UserStore extends BaseStore<User> {
+    private static final String TABLE = "user";
     
     public UserStore(Connection dbc) {
-        this.dbc = dbc;
-    }
-    
-    public User get(int id) throws SQLException {
-        Statement stmt = dbc.createStatement();
-
-        ResultSet rs = stmt.executeQuery("SELECT * FROM " + TABLE + " WHERE id = " + id);
-        if(rs.next()) {
-            return makeUser(rs);
-        }
-
-        return null;
+        super(dbc, TABLE);
     }
 
-    public List<User> getAll(int n, int offset) throws SQLException {
-        ArrayList<User> list = new ArrayList<>(n);
-
-        Statement stmt = dbc.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM " + TABLE + " LIMIT " + offset + "," + n);
-
-        while(rs.next()) {
-            list.add(makeUser(rs));
-        }
-
-        return list;
-    }
-
+    @Override
     public boolean add(User user) throws SQLException {
         String sql = "INSERT INTO " + TABLE + "(first_name, last_name, username, pass) VALUES (?, ?, ?, ?)";
         
-        PreparedStatement stmt = dbc.prepareStatement(sql);
+        PreparedStatement stmt = getDatabase().prepareStatement(sql);
         
         stmt.setString(1, user.getFirstName());
         stmt.setString(2, user.getLastName());
@@ -71,7 +43,7 @@ public class UserStore {
             PasswordStorage.InvalidHashException,
             PasswordStorage.CannotPerformOperationException {
         String sql = "SELECT * FROM " + TABLE + " WHERE username = ?";
-        PreparedStatement stmt = dbc.prepareStatement(sql);
+        PreparedStatement stmt = getDatabase().prepareStatement(sql);
         stmt.setString(1, username);
         
         ResultSet rs = stmt.executeQuery();
@@ -81,14 +53,15 @@ public class UserStore {
             String hash = rs.getString("pass");
             
             if(PasswordStorage.verifyPassword(password, hash)) {
-                return makeUser(rs);
+                return makeBean(rs);
             }
         }
         
         return null;
     }
     
-    private User makeUser(ResultSet rs) throws SQLException {
+    @Override
+    protected User makeBean(ResultSet rs) throws SQLException {
         int id = rs.getInt("id");
         String firstName = rs.getString("first_name");
         String lastName = rs.getString("last_name");

@@ -12,7 +12,7 @@ import javax.sql.DataSource;
 import mx.tec.inscripciones.TomcatResolver;
 
 public abstract class BaseServlet extends HttpServlet {
-    private Connection dataBaseConnection;
+    private Connection databaseConnection;
     private MustacheFactory mustacheFactory;
     
     @Override
@@ -21,7 +21,7 @@ public abstract class BaseServlet extends HttpServlet {
             InitialContext initContext = new InitialContext();
             DataSource ds = (DataSource) initContext.lookup("java:/comp/env/jdbc/sistema_inscripciones");
             
-            dataBaseConnection = ds.getConnection();
+            databaseConnection = ds.getConnection();
         } catch(Exception e) {
             getServletContext().log("", e);
         }
@@ -29,8 +29,8 @@ public abstract class BaseServlet extends HttpServlet {
         mustacheFactory = new DefaultMustacheFactory(new TomcatResolver(getServletContext(), "/WEB-INF/templates/"));
     }
     
-    protected Connection getDataBaseConnection() {
-        return dataBaseConnection;
+    protected Connection getDatabaseConnection() {
+        return databaseConnection;
     }
     
     protected MustacheFactory getMustacheFactory() {
