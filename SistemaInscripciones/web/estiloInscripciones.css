@@ -1,0 +1,30 @@
+h1 {    
+    font-family: "Century Gothic";
+    font-size: 200%;
+    text-align: center;
+    color: green;  
+}
+
+body{
+    background-color: #efebc2;
+    font-family: "Arial";
+    font-size: 110%;
+    padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+}
+
+p {
+    font-family: "Arial";
+    padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+}
+
+
+li{
+   color: blue;
+   text-align: left;
+}

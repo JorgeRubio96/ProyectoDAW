@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Sistema de Inscripciones</title>
+    <link rel="stylesheet" type="text/css" href="/estiloInscripciones.css" />
     <style>
         input:invalid{background: red}
         #groups {
@@ -40,6 +41,37 @@
         function goBack(){
             window.history.back();
         }
+    </script>
+    <script type="text/javascript" src="src\java\group\update.js"></script>
+    <script type="text/javascript" src="src\java\group\groupReport.js"></script>
+    <script language="JavaScript">
+       function validate(form)
+       {
+           if(form.clave.value == "")
+           {
+               alert("ingrese clave");
+               form.clave.focus();
+           }
+           else if(form.materia.value == "")
+           {
+               alert("ingrese materia");
+               form.materia.focus();
+           }
+           else if(form.profesor.value =="")
+           {
+               alert("ingrese profesor");
+               form.profesor.focus();
+           }
+           else if(form.horario.value =="")
+           {
+               alert("ingrese horario");
+               form.horario.focus();
+           }
+           else
+           {
+               form.submit();
+           }
+       }
     </script>
 </head>
 
