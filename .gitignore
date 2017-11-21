@@ -27,3 +27,5 @@ hs_err_pid*
 dist
 
 .DS_Store
+
+!/SistemaInscripciones/lib/*.jar
