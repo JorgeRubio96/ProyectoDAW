@@ -5,19 +5,19 @@
 </h1>
 <p>Aqu&iacute; ingresa la informaci&oacuten del grupo:</p>
 
-<form name="createGroup" id="createGroup" action="AddToDataBaseServlet" onSubmit="return ValidarForma(this);">
+<form method="Post" name="createGroup" id="createGroup" action="AddToDataBaseServlet" onSubmit="return ValidarForma(this);">
     <table>
         <tr>
             <td>Materia:</td>
             <td>
                 <select id="materia" name="materia">
-                    <op></op>
-                    <op value="1">Modelos y Anlitica de redes sociales</op>
-                    <op value="2">Desarrollo de Aplicaciones Web</op>
-                    <op value="3">Calidad y Pruebas de Software</op>
-                    <op value="4">Introduccion a la Programacion</op>
-                    <op value="5">Estructura de datos</op>
-                    <op value="6">Dise&ntilde;o de Algoritmos</op>
+                    <option></option>
+                    <option value="1">Modelos y Anlitica de redes sociales</option>
+                    <option value="2">Desarrollo de Aplicaciones Web</option>
+                    <option value="3">Calidad y Pruebas de Software</option>
+                    <option value="4">Introduccion a la Programacion</option>
+                    <option value="5">Estructura de datos</option>
+                    <option value="6">Dise&ntilde;o de Algoritmos</option>
                 </select>
             </td>
         </tr>
@@ -31,38 +31,31 @@
             <td>Profesor:</td>
             <td>
                 <select id="profesor" name="profesor">
-                    <op></op>
-                    <op value="1">Luis Perez</op>
-                    <op value="2">Romina De La Cruz</op>
-                    <op value="3">Jaime Corrales</op>
-                    <op value="4">Consuelo Garcia</op>
+                    <option></option>
+                    <option value="1">Luis Perez</option>
+                    <option value="2">Romina De La Cruz</option>
+                    <option value="3">Jaime Corrales</option>
+                    <option value="4">Consuelo Garcia</option>
                 </select>
             </td>
         </tr>
         <tr>
             <td>Horario:</td>
             <td>
-                <select id="schedule" name="schedule">
-                    
-                </select>
             </td>
         </tr>
         <tr>
             <td>Sal&oacute;n:</td>
             <td>
                 <select id="classroom" name="classroom">
-                    <op></op>
-                    <op value="1">A3301</op>
-                    <op value="2">A4404</op>
-                    <op value="3">A2202</op>
-                    <op value="4">A1207</op>
-                    <op value="5">A3105</op>
+                    <option></op>
+                    <option value="1">A3301</option>
+                    <option value="2">A4404</option>
+                    <option value="3">A2202</option>
+                    <option value="4">A1207</option>
+                    <option value="5">A3105</option>
                 </select>
             </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
         </tr>
     </table>
     <br>

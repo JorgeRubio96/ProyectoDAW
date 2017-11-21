@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "AddToDataBaseServlet", urlPatterns = {"/AddToDataBaseServlet"})
-public class AddToDataBaseServlet extends HttpServlet {
+public class AddToDataBaseServlet extends BaseServlet {
 
     /**
      *
@@ -28,7 +28,7 @@ public class AddToDataBaseServlet extends HttpServlet {
         String profesor = request.getParameter("profesor");
         String horario = request.getParameter("horario");
         ServletContext  context = getServletContext();
-        request.setAttribute(clave, this);
+        
     }
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
