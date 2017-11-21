@@ -1,7 +1,8 @@
 h1 {    
     font-family: "Century Gothic";
     font-size: 200%;
-    
+    text-align: center;
+    color: green;  
 }
 
 body{
