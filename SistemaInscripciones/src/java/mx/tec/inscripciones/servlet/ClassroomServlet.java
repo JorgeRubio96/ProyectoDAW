@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import mx.tec.inscripciones.store.ClassroomStore;
 import mx.tec.inscripciones.model.Classroom;
 
-public class AddClassroomServlet extends BaseServlet {
+public class ClassroomServlet extends BaseServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
