@@ -11,11 +11,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
 @WebServlet(name = "UpdateToDataBaseServlet", urlPatterns = {"/UpdateToDataBaseServlet"})
-public class UpdateToDataBaseServlet extends HttpServlet {
-
+public class UpdateToDataBaseServlet extends BaseServlet {
+    
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
+            throws ServletException, IOException {
         String clave = request.getParameter("clave");
         String materia = request.getParameter("materia");
         String profesor = request.getParameter("profesor");
@@ -24,23 +24,6 @@ public class UpdateToDataBaseServlet extends HttpServlet {
         request.setAttribute(clave, this);
         
     }
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet UpdateToDataBaseServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet UpdateToDataBaseServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

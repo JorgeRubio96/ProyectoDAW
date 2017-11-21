@@ -12,13 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "AddToDataBaseServlet", urlPatterns = {"/AddToDataBaseServlet"})
 public class AddToDataBaseServlet extends BaseServlet {
 
-    /**
-     *
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException

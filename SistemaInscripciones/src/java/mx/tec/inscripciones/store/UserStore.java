@@ -15,29 +15,6 @@ public class UserStore extends BaseStore<User> {
         super(dbc, TABLE);
     }
 
-    @Override
-    public boolean add(User user) throws SQLException {
-        String sql = "INSERT INTO " + TABLE + "(first_name, last_name, username, pass) VALUES (?, ?, ?, ?)";
-        
-        PreparedStatement stmt = getDatabase().prepareStatement(sql);
-        
-        stmt.setString(1, user.getFirstName());
-        stmt.setString(2, user.getLastName());
-        stmt.setString(3, user.getUsername());
-        stmt.setString(4, user.getPassword());
-        
-        stmt.executeUpdate();
-
-        ResultSet rs = stmt.getGeneratedKeys();
-
-        if(rs.next()) {
-            user.setId(rs.getInt(1));
-            return true;
-        }
-        
-        return false;
-    }
-    
     public User login(String username, String password) throws 
             SQLException, 
             PasswordStorage.InvalidHashException,
@@ -58,6 +35,29 @@ public class UserStore extends BaseStore<User> {
         }
         
         return null;
+    }
+
+    @Override
+    public boolean add(User user) throws SQLException {
+        String sql = "INSERT INTO " + TABLE + "(first_name, last_name, username, pass) VALUES (?, ?, ?, ?)";
+        
+        PreparedStatement stmt = getDatabase().prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+        
+        stmt.setString(1, user.getFirstName());
+        stmt.setString(2, user.getLastName());
+        stmt.setString(3, user.getUsername());
+        stmt.setString(4, user.getPassword());
+        
+        stmt.executeUpdate();
+
+        ResultSet rs = stmt.getGeneratedKeys();
+
+        if(rs.next()) {
+            user.setId(rs.getInt(1));
+            return true;
+        }
+        
+        return false;
     }
     
     @Override

@@ -5,7 +5,10 @@
 --%>
 <%@page import="java.util.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ page import="models.*" %>
+<%@ page import="mx.tec.inscripciones.model.Classroom" %>
+<%@ page import="mx.tec.inscripciones.store.ClassroomStore" %>
+<%@ page import="javax.naming.InitialContext" %>
+<%@ page import="javax.sql.DataSource" %>
 
 <!DOCTYPE html>
 <html>
@@ -28,9 +31,12 @@
             </tr>
             </thead>
             <tbody>
-            <%List<Classroom> salones= DBmethods.allSalones();
-            for (Iterator<Classroom> itr = salones.iterator(); itr.hasNext(); )
-            {
+            <%
+                InitialContext initContext = new InitialContext();
+                DataSource ds = (DataSource) initContext.lookup("java:/comp/env/jdbc/sistema_inscripciones");
+                ClassroomStore store = new ClassroomStore(ds.getConnection());
+                List<Classroom> salones = store.getAll(50, 0);
+                for (Iterator<Classroom> itr = salones.iterator(); itr.hasNext(); ) {
             %>
             <tr>
                 <td data-title="code"><%=itr.next().getCode()%></td>

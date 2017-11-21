@@ -4,7 +4,8 @@ CREATE TABLE user (
     last_name VARCHAR(25) NOT NULL,
     username VARCHAR(20) NOT NULL,
     pass CHAR(71) NOT NULL,
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+    UNIQUE (username)
 );
 
 CREATE TABLE teacher (

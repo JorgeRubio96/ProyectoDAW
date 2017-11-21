@@ -3,9 +3,12 @@ package mx.tec.inscripciones.servlet;
 import com.github.mustachejava.Mustache;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import mx.tec.inscripciones.PasswordStorage;
 
 import mx.tec.inscripciones.model.User;
 import mx.tec.inscripciones.store.UserStore;
@@ -32,12 +35,13 @@ public class RegisterServlet extends BaseServlet {
     }
     
     @Override
-    public void doPost(HttpServletRequest req, HttpServletResponse resp) {
-        String username = (String) req.getAttribute("username");
-        String password = (String) req.getAttribute("password");
-        String firstName = (String) req.getAttribute("first-name");
-        String lastName = (String) req.getAttribute("last-name");
-        String confirm = (String) req.getAttribute("confirm");
+    public void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws IOException {
+        String username = req.getParameter("username");
+        String password = req.getParameter("password");
+        String firstName = req.getParameter("first-name");
+        String lastName = req.getParameter("last-name");
+        String confirm = req.getParameter("confirm");
         
         UserStore userStore = new UserStore(getDatabaseConnection());
         
@@ -45,13 +49,21 @@ public class RegisterServlet extends BaseServlet {
             User user = new User(firstName, lastName, username, password);
             
             if(userStore.add(user)) {
-                resp.sendRedirect("/login");
+                resp.sendRedirect("login");
+                return;
             } else {
-                BaseViewModel vm = new BaseViewModel("Register");
-                view.execute(resp.getWriter(), vm);
+                
             }
-        } catch(Exception e) {
+        } catch(SQLIntegrityConstraintViolationException e) {
+            // Empalme de username
+            BaseViewModel vm = new BaseViewModel("Register");
+            view.execute(resp.getWriter(), vm);
+        } catch(SQLException | 
+                PasswordStorage.CannotPerformOperationException e) {
             getServletContext().log("", e);
         }
+      
+        BaseViewModel vm = new BaseViewModel("Register");
+        view.execute(resp.getWriter(), vm);
     }
 }

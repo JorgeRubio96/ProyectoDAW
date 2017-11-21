@@ -1,19 +1,29 @@
-package models;
+package mx.tec.inscripciones.model;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author inspiron
- */
 public class Classroom {
+    private int id;
     private String code;
     private String building;
     private int number;
+    
+    public Classroom(int id, String code, String building, int number) {
+        this.id = id;
+        this.code = code;
+        this.building = building;
+        this.number = number;
+    }
+    
+    public Classroom(String code, String building, int number) {
+        this(-1, code, building, number);
+    }
+    
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    public int getId() {
+        return this.id;
+    }
 
     public void setCode(String code){
         this.code = code;

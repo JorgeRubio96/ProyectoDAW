@@ -1,0 +1,30 @@
+{{<app-template}}
+{{$app}}
+    <form action="teachers/delete" method="POST">
+        <a href="teachers/add">Agregar Nuevo</a>
+        <button type="submit">Borrar seleccionados</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nomina</th>
+                    <th>Nombre(s)</th>
+                    <th>Apellidos</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                <tr>
+            </thead>
+            <tbody>
+            {{#teachers}}
+                <tr>{{nomina}}</tr>
+                <tr>{{firstName}}</tr>
+                <tr>{{lastName}}</tr>
+                <tr>{{email}}</tr>
+                <tr><input type="checkbox" name="delete" value="{{id}}"></tr>
+                <tr><a href="teachers/edit/{{id}}">Modificar</a></tr>
+            {{/teachers}}
+            </tbody>
+        </table>
+        <button type="submit">Borrar seleccionados</button>
+    </form>
+{{/app}}
+{{/app-template}}

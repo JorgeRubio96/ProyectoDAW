@@ -33,8 +33,8 @@ public class LoginServlet extends BaseServlet {
     
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp) {
-        String username = (String) req.getAttribute("username");
-        String password = (String) req.getAttribute("password");
+        String username = req.getParameter("username");
+        String password = req.getParameter("password");
         
         UserStore userStore = new UserStore(getDatabaseConnection());
         

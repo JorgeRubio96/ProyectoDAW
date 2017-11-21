@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.SQLException;
@@ -39,6 +40,20 @@ public abstract class BaseStore<T> {
         }
 
         return list;
+    }
+
+    public int delete(List<Integer> ids) throws SQLException {
+        String sql = "DELETE FROM " + table + " WHERE id = ?";
+        int deleted = 0;
+        
+        PreparedStatement stmt = getDatabase().prepareStatement(sql);
+
+        for(Integer id: ids) {
+            stmt.setInt(1, id);
+            deleted += stmt.executeUpdate();
+        }
+
+        return deleted;
     }
 
     protected Connection getDatabase() {

@@ -1,9 +1,3 @@
-<%-- 
-    Document   : editSubject
-    Created on : 20/11/2017, 04:26:11 PM
-    Author     : avm
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
