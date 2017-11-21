@@ -14,7 +14,8 @@ CREATE TABLE teacher (
     last_name VARCHAR(25) NOT NULL,
     email VARCHAR(40) NOT NULL,
     PRIMARY KEY (id),
-    UNIQUE (nomina)
+    UNIQUE (nomina),
+    UNIQUE (email)
 );
 
 CREATE TABLE course (

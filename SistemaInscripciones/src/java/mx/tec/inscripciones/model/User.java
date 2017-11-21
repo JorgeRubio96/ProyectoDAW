@@ -17,8 +17,9 @@ public class User {
         this.password = password;
     }
         
-    public User(String firstName, String lastName, String username, String password) {
-        this(-1, firstName, lastName, username, password);
+    public User(String firstName, String lastName, String username, String password) 
+            throws PasswordStorage.CannotPerformOperationException{
+        this(-1, firstName, lastName, username, PasswordStorage.createHash(password));
     }
     
     public int getId() {
@@ -58,8 +59,7 @@ public class User {
     }
     
     public void setPassword(String password)
-            throws PasswordStorage.CannotPerformOperationException
-    {
+            throws PasswordStorage.CannotPerformOperationException {
         this.password = PasswordStorage.createHash(password);
     }
 }
