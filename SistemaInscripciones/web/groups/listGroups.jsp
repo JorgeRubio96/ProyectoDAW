@@ -8,7 +8,6 @@
                 <th>Profesor</th>
                 <th>Horario</th>
                 <th>Idioma</th>
-                <th>Clave</th>
                 <th>Sal&oacute;n</th>
                 <th>Hornors</th>
                 <th>Acci&oacute;n</th>

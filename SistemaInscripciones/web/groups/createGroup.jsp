@@ -8,21 +8,62 @@
 <form name="createGroup" id="createGroup" action="AddToDataBaseServlet" onSubmit="return ValidarForma(this);">
     <table>
         <tr>
-            <td>Clave:</td>
-            <td><input type="text" name="clave" id="clave" required></td>
+            <td>Materia:</td>
+            <td>
+                <select id="materia" name="materia">
+                    <op></op>
+                    <op value="1">Modelos y Anlitica de redes sociales</op>
+                    <op value="2">Desarrollo de Aplicaciones Web</op>
+                    <op value="3">Calidad y Pruebas de Software</op>
+                    <op value="4">Introduccion a la Programacion</op>
+                    <op value="5">Estructura de datos</op>
+                    <op value="6">Dise&ntilde;o de Algoritmos</op>
+                </select>
+            </td>
         </tr>
         <tr>
-            <td>Materia:</td>
-            <td><input type="text" name="materia" id="materia" required /></td>
+            <td>Grupo no.:</td>
+            <td>
+                <input type="text" id="numGroup" name="numGroup">
+            </td>
         </tr>
         <tr>
             <td>Profesor:</td>
-            <td><input type="text" name="profesor" id="profesor" required ></td>
+            <td>
+                <select id="profesor" name="profesor">
+                    <op></op>
+                    <op value="1">Luis Perez</op>
+                    <op value="2">Romina De La Cruz</op>
+                    <op value="3">Jaime Corrales</op>
+                    <op value="4">Consuelo Garcia</op>
+                </select>
+            </td>
         </tr>
         <tr>
             <td>Horario:</td>
-            <td><input type="text" name="horario" id="horario" hint="aaaa-mm-dd" pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])" required ></td>
-        </tr>    
+            <td>
+                <select id="schedule" name="schedule">
+                    
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Sal&oacute;n:</td>
+            <td>
+                <select id="classroom" name="classroom">
+                    <op></op>
+                    <op value="1">A3301</op>
+                    <op value="2">A4404</op>
+                    <op value="3">A2202</op>
+                    <op value="4">A1207</op>
+                    <op value="5">A3105</op>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
     </table>
     <br>
     <br>
