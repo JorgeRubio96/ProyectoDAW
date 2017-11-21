@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+<head>
+    <title>Prueba Envia Mail</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+    <script>
+        function sendMail(){
+            var sendTo= $('#mail').val();
+            var message= buildMessage();
+            $.post('sendMail.php', {postsendTo:sendTo,postmessage:message},
+                function(data){
+                    $('#mailStatus').html(data);
+                });
+        }
+
+        function buildMessage(){
+            var message= "<table>";
+            $('table tr').each(function () {
+                message+= "<tr>";
+                message+= $(this).html();
+                message+= "</tr>";
+            });
+            message+="</table>";
+            return message;
+        }
+    </script>
+</head>
+
+<body>
+<table id="resultsTable">
+    <tr>
+        <th>Clave</th>
+        <th>Materia</th>
+        <th>Honores</th>
+    </tr>
+    <tr>
+        <td>TC1010</td>
+        <td>Progra1</td>
+        <td>Normal</td>
+    </tr>
+    <tr>
+        <td>TC1020</td>
+        <td>Progra2</td>
+        <td>Normal</td>
+    </tr>
+    <tr>
+        <td>TC1011</td>
+        <td>Progra1</td>
+        <td>Honores</td>
+    </tr>
+</table>
+<br>
+<input type="text" id="mail">
+<button id="sendMail" onclick="sendMail()">Enviar correo</button>
+<div id="mailStatus"></div>
+</body>
+</html>
