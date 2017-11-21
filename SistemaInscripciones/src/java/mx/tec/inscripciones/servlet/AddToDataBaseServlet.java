@@ -50,21 +50,17 @@ public class AddToDataBaseServlet extends BaseServlet {
             Class group = new Class( courseId, teacherId, igroupNumber, times);
             
             if(classStore.add(group)) {
-                response.sendRedirect("login");
-                return;
+                
             } else {
                 
             }
         } catch(SQLIntegrityConstraintViolationException e) {
-            // Empalme de username
-            BaseViewModel vm = new BaseViewModel("Register");
-            view.execute(response.getWriter(), vm);
+            getServletContext().log("",e);
         } catch(SQLException e) {
             getServletContext().log("", e);
         }
       
-        BaseViewModel vm = new BaseViewModel("Register");
-        view.execute(response.getWriter(), vm);
+        
         
     }
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)

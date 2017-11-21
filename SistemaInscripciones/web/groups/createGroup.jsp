@@ -1,4 +1,11 @@
 <%@ include file="/groups/headerGroups.jsp" %>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.SQLException"%>
+<%@page import="java.sql.Time"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <h1>
     Crear grupo
@@ -18,6 +25,21 @@
                     <option value="4">Introduccion a la Programacion</option>
                     <option value="5">Estructura de datos</option>
                     <option value="6">Dise&ntilde;o de Algoritmos</option>
+                    <%
+                        String sql = "SELECT * FROM course";
+                        PreparedStatement stmt = getDatabase().prepareStatement(sql);
+                        ResultSet rs = stmt.executeQuery();
+                        while(rs.next()) 
+                        {
+                            int id = rs.getInt("id");
+                            String title = rs.getString("title");
+                            
+                                %>
+                                <option value='<%= id%>'><%= title%></option>
+                                <%
+                        }
+                        
+                    %>
                 </select>
             </td>
         </tr>
@@ -36,6 +58,20 @@
                     <option value="2">Romina De La Cruz</option>
                     <option value="3">Jaime Corrales</option>
                     <option value="4">Consuelo Garcia</option>
+                    <%
+                        String sql2 = "SELECT * FROM teacher";
+                        PreparedStatement stmt2 = getDatabase().prepareStatement(sql);
+                        ResultSet rs2 = stmt2.executeQuery();
+                        while(rs2.next()) 
+                        {
+                            int idProfesor2 = rs2.getInt("id");
+                            String fName = rs2.getString("first_name");
+                            String lName = rs2.getString("last_name");
+                                %>
+                                <option value='<%= idProfesor2%>'><%= fName+" "+lName%></option>
+                                <%
+                        }
+                    %>
                 </select>
             </td>
         </tr>
@@ -49,6 +85,20 @@
                     <option value="3">A2202</option>
                     <option value="4">A1207</option>
                     <option value="5">A3105</option>
+                    <%
+                        String sql3 = "SELECT * FROM classroom";
+                        PreparedStatement stmt3 = getDatabase().prepareStatement(sql);
+                        ResultSet rs3 = stmt3.executeQuery();
+                        while(rs3.next()) 
+                        {
+                            int idSalon2 = rs3.getInt("id");
+                            String building = rs3.getString("building");
+                            String room = rs3.getString("room");
+                    %>
+                                <option value='<%= idSalon2%>'><%= building+" "+room%></option>
+                    <%
+                        }
+                    %>
                 </select>
             </td>
         </tr>
@@ -81,7 +131,7 @@
     </table>
     <br>
     <br>
-    <input type="submit" value="Crear" onclick="validate(this.form)">
+    <input type="submit" value="Crear">
     <button type="reset" value="Borrar">Borrar</button>
 </form>
     <button onclick="goBack()">Cancelar</button>
@@ -111,9 +161,7 @@
                         numGroup: this.numGroup,
                         classroom: this.classroom,
                         times: this.times
-                    }
-                    
-                    console.log(data);
+                    };
                 }
             }
         });

@@ -32,12 +32,12 @@
  TimeSlot horario;
  ArrayList<Course> materias = new ArrayList();
 %>
-<form name="editGroup" id="editGroup" action="UpdateToDataBaseServlet" onSubmit="return ValidarForma(this);">
-    <table id="datos" name="datos">
+<form name="datos" action="UpdateToDataBaseServlet" @submit.prevent="send">
+    <table name="datos">
         <tr>
             <td>Materia:</td>
             <td>
-                <select id="materia" name="materia">
+                <select v-model="materia">
                     <option></option>
                     <%
                         String sql = "SELECT * FROM course";
@@ -69,13 +69,13 @@
         <tr>
             <td>Grupo no.:</td>
             <td>
-                <input type="number" id="numGroup" name="numGroup" value='<%= groupNumber%>'>
+                <input type="number" v-model="numGroup" value='<%= groupNumber%>'>
             </td>
         </tr>
         <tr>
             <td>Profesor:</td>
             <td>
-                <select id="profesor" name="profesor">
+                <select v-model="profesor">
                     <option></option>
                     <%
                         String sql2 = "SELECT * FROM teacher";
@@ -105,8 +105,8 @@
         <tr>
             <td>Sal&oacute;n:</td>
             <td>
-                <select id="classroom" name="classroom">
-                    <option></op>
+                <select v-model="classroom">
+                    <option></option>
                     <%
                         String sql3 = "SELECT * FROM classroom";
                         PreparedStatement stmt3 = getDatabase().prepareStatement(sql);
@@ -132,11 +132,12 @@
                 </select>
             </td>
         </tr>
-        <tr>
-            <td>D&iacute;a:</td>
-            <td>
-                <select id="dia" name="dia">
-                    <%
+        <template v-for="time in times">
+            <tr>
+                <td>D&iacute;a:</td>
+                <td>
+                    <select v-model="time.day">
+                        <%
                         String sql4 = "SELECT * FROM schedule";
                         PreparedStatement stmt4 = getDatabase().prepareStatement(sql);
                         ResultSet rs4 = stmt4.executeQuery();
@@ -156,27 +157,59 @@
                                 <option value='<%= dia2%>'><%= dia2%></option>
                                 <%
                             }
-                        }
-                        
+                        }                        
                     %>
-                </select>
-            </td>
-            <td>Inicio:</td>
-            <td>
-                <input type="time" id="hrInicio_0" name="hrInicio_0" value="<%= hrInicio%>">
-            </td>
-            <td>Fin:</td>
-            <td>
-                <input type="time" id="hrFin_0" name="hrFin_0" value="<%= hrFin%>">
-            </td>
-            <td><a onclick="agregarHorario()">Agregar</a></td>
-        </tr>
+                    </select>
+                </td>
+                <td>Inicio:</td>
+                <td>
+                    <input type="time" v-model="time.start" value="<%= hrInicio%>">
+                </td>
+                <td>Fin:</td>
+                <td>
+                    <input type="time" v-model="time.end" value="<%= hrFin%>">
+                </td>
+                <td>
+                    <a @click="add" v-if="time == times[0]">Agregar</a>
+                    <a @click="remove(time)" v-else>Borrar</a>
+                </td>
+            </tr>
+        </template>
     </table>
     <br>
     <br>
-    <input type="submit" value="Crear" onclick="validate(this.form)">
+    <input type="submit" value="Guardar">
     <button type="reset" value="Borrar">Borrar</button>
 </form>
     <button onclick="goBack()">Cancelar</button>
     <p>Al dar clic en Guardar se registraran los cambios</p>
+    <script>
+        let horarioVue = new Vue({
+            el: '#datos',
+            data: {
+                materia: 0,
+                profesor: "",
+                numGroup: 0,
+                classroom: 0,
+                times: [{}]
+            },
+            methods: {
+                add: function() {
+                    this.times.push({});
+                },
+                remove: function(time) {
+                    this.times.splice(this.times.indexOf(time), 1);
+                },
+                send: function() {
+                    let data = {
+                        materia: this.materia,
+                        profesor: this.profesor,
+                        numGroup: this.numGroup,
+                        classroom: this.classroom,
+                        times: this.times
+                    };
+                }
+            }
+        });
+    </script>
 <%@ include file="/footer.jsp" %>

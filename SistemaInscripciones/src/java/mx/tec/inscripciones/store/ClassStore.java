@@ -44,6 +44,29 @@ public class ClassStore extends BaseStore<Class> {
         
         return false;
     }
+    
+    public boolean update(Class aClass) throws SQLException{
+       
+        String sql = "UPDATE " + TABLE + "SET course_id = ? , teacher_id = ? , "
+                + "group_number = ?  WHERE id = ?";
+        
+        PreparedStatement stmt = getDatabase().prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+        
+        stmt.setInt(1, aClass.getCourseId());
+        stmt.setInt(2, aClass.getTeacherId());
+        stmt.setInt(3, aClass.getGroupNumber());
+        stmt.setInt(4, aClass.getId());
+        
+        stmt.executeUpdate();
+
+        ResultSet rs = stmt.getGeneratedKeys();
+
+        if(rs.next()) {
+            aClass.setId(rs.getInt(1));
+            return true;
+        }
+        return false;
+    }
 
     @Override
     public int delete(List<Integer> ids) throws SQLException {
