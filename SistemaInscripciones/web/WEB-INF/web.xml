@@ -5,10 +5,18 @@
         <servlet-name>UpdateToDataBaseServlet</servlet-name>
         <servlet-class>group.UpdateToDataBaseServlet</servlet-class>    
     </servlet>
+     <servlet>
+        <servlet-name>AddToDataBaseServlet</servlet-name>
+        <servlet-class>group.AddToDataBaseServlet</servlet-class>    
+    </servlet>
     <!-- the mapping for the servlets -->
     <servlet-mapping>
         <servlet-name>UpdateToDataBaseServlet</servlet-name>
         <url-pattern>/group/UpdateToDataBaseServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddToDataBaseServlet</servlet-name>
+        <url-pattern>/group/AddToDataBaseServlet</url-pattern>
     </servlet-mapping>
     <!--Config. of the session and cookies-->
     <session-config>

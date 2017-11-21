@@ -1,6 +1,7 @@
 <%@ page import="group.Group" %>
 <%@ include file="/header.jsp" %>
         <h1>Lista de Grupos</h1>
+        <a href="createGroup.jsp">Crear grupo</a>
         <table id="groups">
             <tr>
                 <th>Materia</th>

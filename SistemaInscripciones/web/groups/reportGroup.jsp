@@ -1,9 +1,7 @@
 <%@ include file="/header.jsp" %>
-        <h1>Reporte de grupos</h1>
+<h1>Reporte de grupos por materia</h1>
         <br>
-        <h2>por materia</h2>
-        <br>
-        <form>
+        <form id="formReport">
             Seleccione materia: <select id="materia" name="materia" onchange="showGroup(this.value)" placeholder="Seleccione un valor">
                 <option></option>
                 <option>Valor</option>

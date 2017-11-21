@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Sistema de Inscripciones</title>
-    <link rel="stylesheet" type="text/css" href="/estiloInscripciones.css" />
+    <link rel="stylesheet" type="text/css" href="estiloInscripciones.css" />
     <style>
         input:invalid{background: red}
         #groups {

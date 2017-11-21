@@ -24,6 +24,6 @@ function handleRespone()
     if((request.readyState == 4) && 
             (request.status == 200))
     {
-        
+        var reqDoc = request.responseText;
     }
 }
