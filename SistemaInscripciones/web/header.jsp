@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Sistema de Inscripciones</title>
+    <link rel="stylesheet" type="text/css" href="/estiloInscripciones.css" />
     <style>
         #groups {
             font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;

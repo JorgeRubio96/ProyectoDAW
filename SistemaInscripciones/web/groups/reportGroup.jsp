@@ -1,6 +1,13 @@
-<%@ page import="group.Group" %>
 <%@ include file="/header.jsp" %>
-        <h1>Lista de Grupos</h1>
+        <h1>Reporte de grupos</h1>
+        <br>
+        <h2>por materia</h2>
+        <br>
+        <form>
+            Seleccione materia: <select id="materia" name="materia" onchange="showGroup(this.value)" placeholder="Seleccione un valor">
+                <option></option>
+                <option>Valor</option>
+            </select>
         <table id="groups">
             <tr>
                 <th>Materia</th>
@@ -14,8 +21,7 @@
                 <th>Acci&oacute;n</th>
             </tr>
         </table>
-        <br>
-        <a href="reportGroup.jsp">Reporte por grupos</a>
+        </form>
         <br>
         <button conclick="goBack()">Index</button>
 <%@ include file="/footer.jsp" %>

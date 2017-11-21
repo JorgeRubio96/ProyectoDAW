@@ -1,5 +1,4 @@
-var form, spinnerButton;
-
+var form;
 $(document).ready(function() {
 	form = $('form#editGroup').validate({
 		rules: {
@@ -78,7 +77,7 @@ function setEvents() {
 			}).done(function(response){
 				document.location.href = "/groups/listGroups.jsp";
 			}).fail(function(response){
-				
+                                console.log('Failed');
 			});
 		}
 	});
