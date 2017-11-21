@@ -37,6 +37,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
+.edit {
+     text-decoration: underline;
+     color: blue;
+}
+input {
+	width:50px;
+}
 #demo {
   margin: 20px auto;
 }

@@ -36,12 +36,13 @@ and open the template in the editor.
         </style>
     </head>
     <body>
-        <div id="demo" style="max-width:600px;">
-        <form action="servlet">
-            <div style="text-align:center;"><label> Classroom code: </label> <input type="text" name="ccode" maxlength="10">
-            <div style="text-align:center;"><label> Building:</label> <input type="text" name="build" maxlength="40"><div>
-                    <div style="text-align:center;"><label> Room number: </label> <input type="number" name="number"><div>
-            <div style="text-align:center;"><input type="submit" value="Create"><div>
-        </form></div>
+        <div id="demo">
+        <form action="addClassroom">
+            <label> Classroom code: </label> <input type="text" name="ccode" maxlength="10" required><br>
+            <label> Building:</label> <input type="text" name="build" maxlength="40" required><br>
+            <label> Room number: </label> <input type="number" name="number" min="1" required><br>
+            <input type="submit" value="Create">
+        </form>
+        </div>
     </body>
 </html>
