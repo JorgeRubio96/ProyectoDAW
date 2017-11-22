@@ -7,8 +7,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import mx.tec.inscripciones.store.ClassroomStore;
+import mx.tec.inscripciones.viewmodel.BaseViewModel;
 
 public class DeleteClassroomsServlet extends BaseServlet {
+    BaseViewModel vm = new BaseViewModel("Delete Classrooms");
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -21,7 +23,7 @@ public class DeleteClassroomsServlet extends BaseServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         ArrayList<Integer> selectedClassrooms = new ArrayList<>();
         
         for(String val: request.getParameterValues("selected")) {
@@ -42,5 +44,10 @@ public class DeleteClassroomsServlet extends BaseServlet {
         } catch(Exception e) {
             getServletContext().log("", e);
         }
+    }
+
+    @Override
+    protected BaseViewModel getViewModel() {
+        return vm;
     }
 }

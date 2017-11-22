@@ -2,10 +2,14 @@
 <html>
     <head>
         <title>{{pageTitle}}</title>
-        <link rel="stylesheet" type="text/css" href="{{cssUri}}">
+        {{#cssUriList}}
+            <link rel="stylesheet" type="text/css" href="{{urlBase}}{{.}}">
+        {{/cssUriList}}
     </head>
     <body id="app">
         {{$content}}{{/content}}
-        <script src="{{jsUri}}"></script>
+        {{#jsUriList}}
+            <script src="{{urlBase}}{{.}}"></script>
+        {{/jsUriList}}
     </body>
 </html>

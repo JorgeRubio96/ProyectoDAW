@@ -9,6 +9,7 @@ import mx.tec.inscripciones.viewmodel.BaseViewModel;
 
 public class MainServlet extends BaseServlet {
     Mustache view;
+    BaseViewModel vm;
 
     @Override
     public void init() {
@@ -19,12 +20,17 @@ public class MainServlet extends BaseServlet {
 
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) {
-        BaseViewModel vm = new BaseViewModel("Inicio");
-
         try {
-            view.execute(resp.getWriter(), vm);
+            view.execute(resp.getWriter(), getViewModel());
         } catch(Exception e) {
             getServletContext().log("", e);
         }
+    }
+    
+    @Override
+    protected BaseViewModel getViewModel() {
+        if(vm == null)
+            vm = new BaseViewModel("Inicio");
+        return vm;
     }
 }

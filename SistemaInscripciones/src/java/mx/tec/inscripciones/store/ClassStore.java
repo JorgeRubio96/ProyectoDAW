@@ -27,7 +27,7 @@ public class ClassStore extends BaseStore<Class> {
     public boolean add(Class aClass) throws SQLException {
         String sql = "INSERT INTO " + TABLE + "(course_id, teacher_id, group_number) VALUES (?, ?, ?)";
         
-        PreparedStatement stmt = getDatabase().prepareStatement(sql);
+        PreparedStatement stmt = getDatabase().prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
         
         stmt.setInt(1, aClass.getCourseId());
         stmt.setInt(2, aClass.getTeacherId());
@@ -58,6 +58,11 @@ public class ClassStore extends BaseStore<Class> {
         }
 
         return deleted;
+    }
+
+    @Override
+    public boolean update(Class bean) throws SQLException {
+        return false;
     }
     
     @Override

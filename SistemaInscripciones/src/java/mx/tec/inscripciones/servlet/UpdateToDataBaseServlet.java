@@ -10,9 +10,12 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
+import mx.tec.inscripciones.viewmodel.BaseViewModel;
+
 @WebServlet(name = "UpdateToDataBaseServlet", urlPatterns = {"/UpdateToDataBaseServlet"})
 public class UpdateToDataBaseServlet extends BaseServlet {
-    
+    BaseViewModel vm = new BaseViewModel("Update");
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -31,4 +34,8 @@ public class UpdateToDataBaseServlet extends BaseServlet {
         doPost(request, response);
     }
 
+    @Override
+    protected BaseViewModel getViewModel() {
+        return vm;
+    }
 }

@@ -39,7 +39,7 @@ public class ClassroomStore extends BaseStore<Classroom> {
     public boolean add(Classroom classroom) throws SQLException {
         String sql = "INSERT INTO " + TABLE + "(code, building, number) VALUES (?, ?, ?)";
         
-        PreparedStatement stmt = getDatabase().prepareStatement(sql);
+        PreparedStatement stmt = getDatabase().prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
         
         stmt.setString(1, classroom.getCode());
         stmt.setString(2, classroom.getBuilding());
@@ -54,6 +54,11 @@ public class ClassroomStore extends BaseStore<Classroom> {
             return true;
         }
         
+        return false;
+    }
+
+    @Override
+    public boolean update(Classroom bean) throws SQLException {
         return false;
     }
     

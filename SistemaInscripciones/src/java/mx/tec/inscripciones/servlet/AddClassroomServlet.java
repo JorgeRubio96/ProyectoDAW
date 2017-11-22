@@ -7,8 +7,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import mx.tec.inscripciones.store.ClassroomStore;
 import mx.tec.inscripciones.model.Classroom;
+import mx.tec.inscripciones.viewmodel.BaseViewModel;
 
 public class AddClassroomServlet extends BaseServlet {
+    BaseViewModel vm = new BaseViewModel("Classroom");
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -29,5 +31,9 @@ public class AddClassroomServlet extends BaseServlet {
         } catch (Exception e) {
             getServletContext().log("", e);
         }
+    }
+
+    protected BaseViewModel getViewModel() {
+        return vm;
     }
 }

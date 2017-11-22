@@ -61,6 +61,11 @@ public class UserStore extends BaseStore<User> {
     }
     
     @Override
+    public boolean update(User bean) throws SQLException {
+        return false;
+    }
+
+    @Override
     protected User makeBean(ResultSet rs) throws SQLException {
         int id = rs.getInt("id");
         String firstName = rs.getString("first_name");

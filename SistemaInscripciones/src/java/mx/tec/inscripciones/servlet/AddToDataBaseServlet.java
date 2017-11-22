@@ -5,12 +5,14 @@ import java.io.PrintWriter;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import mx.tec.inscripciones.viewmodel.BaseViewModel;
+
 @WebServlet(name = "AddToDataBaseServlet", urlPatterns = {"/AddToDataBaseServlet"})
 public class AddToDataBaseServlet extends BaseServlet {
+    BaseViewModel vm = new BaseViewModel("Database");
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -47,4 +49,8 @@ public class AddToDataBaseServlet extends BaseServlet {
         doPost(request, response);
     }
 
+    @Override
+    protected BaseViewModel getViewModel() {
+        return vm;
+    }
 }
