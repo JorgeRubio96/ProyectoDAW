@@ -42,7 +42,7 @@ public class LoginServlet extends BaseServlet {
             User user = userStore.login(username, password);
             
             if(user != null) {
-                resp.sendRedirect("/");
+                resp.sendRedirect(vm.urlBase + "/");
             } else {
                 vm.setError("Usuario o contraseña incorrecta");                
                 view.execute(resp.getWriter(), getViewModel());

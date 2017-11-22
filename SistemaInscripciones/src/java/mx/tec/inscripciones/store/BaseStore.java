@@ -52,6 +52,23 @@ public abstract class BaseStore<T> {
         return list;
     }
 
+    public List<T> getWhereEquals(String col, Object val) throws SQLException {
+        String sql = "SELECT * FROM " + table + " WHERE " + col +"= ?";
+        ArrayList<T> list = new ArrayList<>();
+
+
+        PreparedStatement stmt = getDatabase().prepareStatement(sql);
+        stmt.setString(1, val.toString());
+
+        ResultSet rs = stmt.executeQuery();
+
+        while(rs.next()) {
+            list.add(makeBean(rs));
+        }
+
+        return list;
+    }
+
     public int delete(List<Integer> ids) throws SQLException {
         String sql = "DELETE FROM " + table + " WHERE id = ?";
         int deleted = 0;

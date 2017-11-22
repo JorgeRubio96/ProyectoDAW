@@ -32,6 +32,7 @@ public class TeacherEditServlet extends BaseServlet {
             throws IOException {
         String path = req.getServletPath();
         String action = path.substring(path.lastIndexOf('/') + 1);
+        vm.reset();
 
         if(action.equals("edit")) {
             try {
@@ -60,6 +61,7 @@ public class TeacherEditServlet extends BaseServlet {
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws IOException {
+        String url = getServletContext().getContextPath() + "/teachers";
         String path = req.getServletPath();
         String action = path.substring(path.lastIndexOf('/') + 1);
         boolean edit = action.equals("edit");
@@ -71,6 +73,8 @@ public class TeacherEditServlet extends BaseServlet {
 
         Teacher teacher = new Teacher(nomina, firstName, lastName, email);
 
+        vm.reset();
+
         if(edit) {
             try {
                 int id = Integer.parseInt(req.getParameter("id"));
@@ -80,7 +84,6 @@ public class TeacherEditServlet extends BaseServlet {
                 return;
             }
         }
-
 
         if(nomina == null || nomina.isEmpty())
             vm.errors.add("Nomina no debería estar vacio");
@@ -97,6 +100,7 @@ public class TeacherEditServlet extends BaseServlet {
 
         if(!vm.errors.isEmpty()) {
             vm.teacher = teacher;
+            vm.action = action;
             view.execute(resp.getWriter(), vm);
             return;
         }
@@ -108,9 +112,9 @@ public class TeacherEditServlet extends BaseServlet {
                 teacher.setId(id);
 
                 if(teacherStore.update(teacher)) {
-                    resp.sendRedirect("/teachers");
+                    resp.sendRedirect(url);
                 } else {
-
+                    resp.sendError(500, "No se registó el camio. Intente de nuevo."); 
                 }
             } catch(NumberFormatException e) {
                 resp.sendError(400);
@@ -121,7 +125,7 @@ public class TeacherEditServlet extends BaseServlet {
         } else {
             try {
                 if(teacherStore.add(teacher)) {
-                    resp.sendRedirect("/teachers");
+                    resp.sendRedirect(url);
                 } else {
                     resp.sendError(500, "No se registó el camio. Intente de nuevo.");
                 }

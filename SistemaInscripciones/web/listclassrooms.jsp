@@ -21,32 +21,34 @@
     <body>
         <div id="demo" style="max-width:500px;">
             <h1>Classroom List</h1>
-        <div class="table-responsive-vertical shadow-z-1">
-            <table id="table" class="table table-hover table-mc-light-blue">
-            <thead>
-            <tr>
-                <th>Classroom</th>
-                <th>Building</th>
-                <th>Room Number</th>
-            </tr>
-            </thead>
-            <tbody>
-            <%
-                InitialContext initContext = new InitialContext();
-                DataSource ds = (DataSource) initContext.lookup("java:/comp/env/jdbc/sistema_inscripciones");
-                ClassroomStore store = new ClassroomStore(ds.getConnection());
-                List<Classroom> salones = store.getAll(50, 0);
-                for (Iterator<Classroom> itr = salones.iterator(); itr.hasNext(); ) {
-            %>
-            <tr>
-                <td data-title="code"><%=itr.next().getCode()%></td>
-                <td data-title="build"><%=itr.next().getBuilding()%></td>
-                <td data-title="number"><%=itr.next().getNumber()%></td>
-            </tr>
-            <%}%>
-            </tbody>
-            </table>
-        </div>
+            <a href="/SistemaInscripciones">Inicio</a>
+            <a href="/SistemaInscripciones/editAddClassroom.jsp">Agregar</a>
+            <div class="table-responsive-vertical shadow-z-1">
+                <table id="table" class="table table-hover table-mc-light-blue">
+                <thead>
+                <tr>
+                    <th>Classroom</th>
+                    <th>Building</th>
+                    <th>Room Number</th>
+                </tr>
+                </thead>
+                <tbody>
+                <%
+                    InitialContext initContext = new InitialContext();
+                    DataSource ds = (DataSource) initContext.lookup("java:/comp/env/jdbc/sistema_inscripciones");
+                    ClassroomStore store = new ClassroomStore(ds.getConnection());
+                    List<Classroom> salones = store.getAll(50, 0);
+                    for (Classroom salon : salones) {
+                %>
+                <tr>
+                    <td data-title="code"><%=salon.getCode()%></td>
+                    <td data-title="build"><%=salon.getBuilding()%></td>
+                    <td data-title="number"><%=salon.getNumber()%></td>
+                </tr>
+                <%}%>
+                </tbody>
+                </table>
+            </div>
         </div>
     </body>
 </html>

@@ -20,7 +20,7 @@ import mx.tec.inscripciones.viewmodel.BaseViewModel;
 
 public class ClassServlet extends BaseServlet {
     @Override
-    public void doGet(HttpServletRequest req, HttpServletResponse resp) 
+    public void doPost(HttpServletRequest req, HttpServletResponse resp) 
         throws ServletException, IOException {
         ClassStore store = null;
         try {
@@ -31,26 +31,20 @@ public class ClassServlet extends BaseServlet {
             return;
         }
 
-        int teacher_id = Integer.parseInt(req.getParameter("proffs"));
-        int course_id = Integer.parseInt(req.getParameter("courses"));
-        int group = Integer.parseInt(req.getParameter("group"));
+        int teacher_id = Integer.parseInt(req.getParameter("profesor"));
+        int course_id = Integer.parseInt(req.getParameter("materia"));
+        int group = Integer.parseInt(req.getParameter("numGroup"));
         
-        String[] time_starth = req.getParameterValues("time_starth");
-        String[] time_startm = req.getParameterValues("time_startm");
-        String[] time_endh = req.getParameterValues("time_endh");
-        String[] time_endm = req.getParameterValues("time_endm");
+        String[] time_start = req.getParameterValues("time-start");
+        String[] time_end = req.getParameterValues("time-end");
         String[] day = req.getParameterValues("day");
-        String[] classrooms = req.getParameterValues("salon");
+        String[] classrooms = req.getParameterValues("classroom");
         
         List<TimeSlot> times = new ArrayList();
         
-        for (int i=0; i < time_starth.length; i++) {
-            if (!time_starth[i].isEmpty() &&
-                !time_startm[i].isEmpty() && 
-                !time_endh[i].isEmpty() && 
-                !time_endm[i].isEmpty()) {
-                
-                TimeSlot time = new TimeSlot(time_starth[i]+":"+time_startm[i]+":00", time_endh[i]+":"+time_endm[i]+":00", day[i], Integer.parseInt(classrooms[i]));
+        for (int i=0; i < time_start.length; i++) {
+            if (!time_start[i].isEmpty() && !time_end[i].isEmpty()) {
+                TimeSlot time = new TimeSlot(time_start[i], time_end[i], day[i], Integer.parseInt(classrooms[i]));
                 times.add(time);
             }
         }

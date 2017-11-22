@@ -24,7 +24,11 @@ p {
 }
 
 
-li{
+li {
    color: blue;
    text-align: left;
+}
+
+.error, .error li {
+    color: red;
 }

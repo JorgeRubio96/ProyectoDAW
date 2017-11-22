@@ -26,11 +26,7 @@
                     DataSource ds = (DataSource) initContext.lookup("java:/comp/env/jdbc/sistema_inscripciones");
 
                     databaseConnection = ds.getConnection();
-                    try {
-                        databaseConnection = ds.getConnection();
-                    } catch(Exception e) {
-                        getServletContext().log("", e);
-                    }
+
                 String sql = "SELECT co.title as materia, c.group_number as numero"
                         + ",s.day as dia, s.start_time as inicio, cl.code as code,"
                         + " cl.building as building, co.honors as honors, t.first_name as fname, "

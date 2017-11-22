@@ -12,21 +12,14 @@
 <h1>
     Crear grupo
 </h1>
-<p>Aqu&iacute; ingresa la informaci&oacuten del grupo:</p>
+<p>Aqu&iacute; ingresa la informaci&oacute;n del grupo:</p>
 
-<form id="datos" action="AddToDataBaseServlet" @submit.prevent="send">
+<form id="datos" method="POST" action="/SistemaInscripciones/ClassServlet">
     <table name="datos">
         <tr>
             <td>Materia:</td>
             <td>
-                <select v-model="materia">
-                    <option></option>
-                    <option value="1">Modelos y Anlitica de redes sociales</option>
-                    <option value="2">Desarrollo de Aplicaciones Web</option>
-                    <option value="3">Calidad y Pruebas de Software</option>
-                    <option value="4">Introduccion a la Programacion</option>
-                    <option value="5">Estructura de datos</option>
-                    <option value="6">Dise&ntilde;o de Algoritmos</option>
+                <select name="materia" v-model="materia">
                     <%
                         InitialContext initContext = new InitialContext();
                     DataSource ds = (DataSource) initContext.lookup("java:/comp/env/jdbc/sistema_inscripciones");
@@ -40,16 +33,13 @@
                         String sql = "SELECT * FROM course";
                         PreparedStatement stmt = databaseConnection.prepareStatement(sql);
                         ResultSet rs = stmt.executeQuery();
-                        while(rs.next()) 
-                        {
+                        while(rs.next()) {
                             int id = rs.getInt("id");
                             String title = rs.getString("title");
-                            
-                                %>
-                                <option value='<%= id%>'><%= title%></option>
-                                <%
+                    %>
+                            <option value="<%= id%>"><%= title%></option>
+                    <%
                         }
-                        
                     %>
                 </select>
             </td>
@@ -57,18 +47,13 @@
         <tr>
             <td>Grupo no.:</td>
             <td>
-                <input type="number" v-model="numGroup">
+                <input name="numGroup" type="number" v-model="numGroup">
             </td>
         </tr>
         <tr>
             <td>Profesor:</td>
             <td>
-                <select v-model="profesor">
-                    <option></option>
-                    <option value="1">Luis Perez</option>
-                    <option value="2">Romina De La Cruz</option>
-                    <option value="3">Jaime Corrales</option>
-                    <option value="4">Consuelo Garcia</option>
+                <select name="profesor" v-model="profesor">
                     <%
                         String sql2 = "SELECT * FROM teacher";
                         PreparedStatement stmt2 = databaseConnection.prepareStatement(sql);
@@ -86,38 +71,30 @@
                 </select>
             </td>
         </tr>
-        <tr>
-            <td>Sal&oacute;n:</td>
-            <td>
-                <select v-model="classroom">
-                    <option></op>
-                    <option value="1">A3301</option>
-                    <option value="2">A4404</option>
-                    <option value="3">A2202</option>
-                    <option value="4">A1207</option>
-                    <option value="5">A3105</option>
-                    <%
-                        String sql3 = "SELECT * FROM classroom";
-                        PreparedStatement stmt3 = databaseConnection.prepareStatement(sql);
-                        ResultSet rs3 = stmt3.executeQuery();
-                        while(rs3.next()) 
-                        {
-                            int idSalon2 = rs3.getInt("id");
-                            String building = rs3.getString("building");
-                            String room = rs3.getString("room");
-                    %>
-                                <option value='<%= idSalon2%>'><%= building+" "+room%></option>
-                    <%
-                        }
-                    %>
-                </select>
-            </td>
-        </tr>
         <template v-for="time in times">
             <tr>
+                <td>Sal&oacute;n:</td>
+                <td>
+                    <select name="classroom" v-model="classroom">
+                        <%
+                            String sql3 = "SELECT * FROM classroom";
+                            PreparedStatement stmt3 = databaseConnection.prepareStatement(sql);
+                            ResultSet rs3 = stmt3.executeQuery();
+                            while(rs3.next()) 
+                            {
+                                int idSalon2 = rs3.getInt("id");
+                                String building = rs3.getString("building");
+                                String room = rs3.getString("room");
+                        %>
+                                    <option value='<%= idSalon2%>'><%= building+" "+room%></option>
+                        <%
+                            }
+                        %>
+                    </select>
+                </td>
                 <td>D&iacute;a:</td>
                 <td>
-                    <select v-model="time.day">
+                    <select name="day" v-model="time.day">
                         <option value="Lu">Lunes</option>
                         <option value="Ma">Martes</option>
                         <option value="Mi">Mi&eacute;rcoles</option>
@@ -127,11 +104,11 @@
                 </td>
                 <td>Inicio:</td>
                 <td>
-                    <input type="time" v-model="time.start">
+                    <input name="time-start" type="time" v-model="time.start">
                 </td>
                 <td>Fin:</td>
                 <td>
-                    <input type="time" v-model="time.end">
+                    <input name="time-end" type="time" v-model="time.end">
                 </td>
                 <td>
                     <a @click="add" v-if="time == times[0]">Agregar</a>
@@ -173,6 +150,9 @@
                         classroom: this.classroom,
                         times: this.times
                     };
+
+                    let xhr = new XMLHttpRequest();
+                    xhr.open("POST", "/SistemaInscripciones");
                 }
             }
         });

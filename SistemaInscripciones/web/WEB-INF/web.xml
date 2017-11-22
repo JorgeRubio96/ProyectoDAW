@@ -21,6 +21,10 @@
         <servlet-class>mx.tec.inscripciones.servlet.TeacherEditServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>TeacherClassesServlet</servlet-name>
+        <servlet-class>mx.tec.inscripciones.servlet.TeacherClassesServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>ClassroomServlet</servlet-name>
         <servlet-class>mx.tec.inscripciones.servlet.ClassroomServlet</servlet-class>
     </servlet>
@@ -67,6 +71,10 @@
     <servlet-mapping>
         <servlet-name>TeacherEditServlet</servlet-name>
         <url-pattern>/teachers/add</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TeacherClassesServlet</servlet-name>
+        <url-pattern>/teachers/classes</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ClassroomServlet</servlet-name>
