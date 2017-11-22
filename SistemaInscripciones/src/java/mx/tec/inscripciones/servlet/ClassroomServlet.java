@@ -9,7 +9,7 @@ import mx.tec.inscripciones.store.ClassroomStore;
 import mx.tec.inscripciones.model.Classroom;
 import mx.tec.inscripciones.viewmodel.BaseViewModel;
 
-public class AddClassroomServlet extends BaseServlet {
+public class ClassroomServlet extends BaseServlet {
     BaseViewModel vm = new BaseViewModel("Classroom");
 
     @Override

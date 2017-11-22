@@ -30,8 +30,11 @@ public abstract class BaseServlet extends HttpServlet {
             getServletContext().log("", e);
         }
         
-        getViewModel().urlBase = getServletContext().getContextPath();
-        getViewModel().cssUriList.add("/estiloInscripciones.css");
+        BaseViewModel vm = getViewModel();
+        if(vm != null) {
+            vm.urlBase = getServletContext().getContextPath();
+            vm.cssUriList.add("/estiloInscripciones.css");
+        }
     }
     
     protected Connection getDatabaseConnection() {
@@ -46,5 +49,7 @@ public abstract class BaseServlet extends HttpServlet {
         return mustacheFactory;
     }
 
-    protected abstract BaseViewModel getViewModel();
+    protected BaseViewModel getViewModel() {
+        return null;
+    }
 }

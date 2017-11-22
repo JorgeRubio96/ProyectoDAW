@@ -28,6 +28,16 @@ public abstract class BaseStore<T> {
 
         return null;
     }
+    
+    public List<T> getAll() throws SQLException {
+        List<T> list = new ArrayList();
+        Statement stmt = dbc.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM " + table);
+        while(rs.next()) {
+            list.add(makeBean(rs));
+        }
+        return list;
+    }
 
     public List<T> getAll(int n, int offset) throws SQLException {
         ArrayList<T> list = new ArrayList<>(n);

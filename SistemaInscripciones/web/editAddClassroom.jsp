@@ -1,3 +1,10 @@
+<%-- 
+    Document   : editAddClass
+    Created on : 21-nov-2017, 20:04:27
+    Author     : inspiron
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -37,7 +44,7 @@ and open the template in the editor.
     </head>
     <body>
         <div id="demo">
-        <form action="addClassroom">
+        <form action="ClassroomServlet">
             <label> Classroom code: </label> <input type="text" name="ccode" maxlength="10" required><br>
             <label> Building:</label> <input type="text" name="build" maxlength="40" required><br>
             <label> Room number: </label> <input type="number" name="number" min="1" required><br>

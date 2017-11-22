@@ -12,6 +12,7 @@ public class Class {
     public Class(int id, int courseId, int teacherId, int groupNumber, List<TimeSlot> times) {
         this.id = id;
         this.courseId = courseId;
+        this.groupNumber = groupNumber;
         this.teacherId = teacherId;
         this.times = times;
     }
