@@ -15,7 +15,9 @@ import mx.tec.inscripciones.store.UserStore;
 import mx.tec.inscripciones.viewmodel.BaseViewModel;
         
 public class RegisterServlet extends BaseServlet {
+    BaseViewModel vm = new BaseViewModel("Register");
     Mustache view;
+
     
     @Override
     public void init() {
@@ -25,7 +27,7 @@ public class RegisterServlet extends BaseServlet {
     
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) {
-        BaseViewModel vm = new BaseViewModel("Register");
+        
         
         try {
             view.execute(resp.getWriter(), vm);
@@ -65,5 +67,9 @@ public class RegisterServlet extends BaseServlet {
       
         BaseViewModel vm = new BaseViewModel("Register");
         view.execute(resp.getWriter(), vm);
+    }
+    
+    protected BaseViewModel getViewModel() {
+        return vm;
     }
 }

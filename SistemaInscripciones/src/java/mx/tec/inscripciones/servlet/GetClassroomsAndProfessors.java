@@ -18,21 +18,9 @@ import mx.tec.inscripciones.model.Teacher;
 import mx.tec.inscripciones.store.ClassroomStore;
 import mx.tec.inscripciones.store.CourseStore;
 import mx.tec.inscripciones.store.TeacherStore;
-/**
- *
- * @author inspiron
- */
-public class GetClassroomsAndProfessors extends BaseServlet {
+import mx.tec.inscripciones.viewmodel.BaseViewModel;
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+public class GetClassroomsAndProfessors extends BaseServlet {
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) {
         TeacherStore storet = new TeacherStore(getDatabaseConnection());

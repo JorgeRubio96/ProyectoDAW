@@ -45,6 +45,11 @@ public class CourseStore extends BaseStore<Course> {
         
         return false;
     }
+
+    @Override
+    public boolean update(Course course) {
+        return false;
+    }
     
     @Override
     protected Course makeBean(ResultSet rs) throws SQLException {

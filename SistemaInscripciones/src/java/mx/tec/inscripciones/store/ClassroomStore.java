@@ -56,6 +56,11 @@ public class ClassroomStore extends BaseStore<Classroom> {
         
         return false;
     }
+
+    @Override
+    public boolean update(Classroom bean) throws SQLException {
+        return false;
+    }
     
     @Override
     protected Classroom makeBean(ResultSet rs) throws SQLException {

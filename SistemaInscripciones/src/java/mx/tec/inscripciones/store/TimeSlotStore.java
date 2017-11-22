@@ -40,6 +40,11 @@ public class TimeSlotStore extends BaseStore<TimeSlot> {
         
         return false;
     }
+
+    @Override
+    public boolean update(TimeSlot time) {
+        return false;
+    }
     
     @Override
     protected TimeSlot makeBean(ResultSet rs) throws SQLException {

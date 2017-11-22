@@ -9,10 +9,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import mx.tec.inscripciones.model.User;
 import mx.tec.inscripciones.store.UserStore;
+import mx.tec.inscripciones.viewmodel.BaseViewModel;
 import mx.tec.inscripciones.viewmodel.LoginViewModel;
         
 public class LoginServlet extends BaseServlet {
     Mustache view;
+    LoginViewModel vm = new LoginViewModel();
     
     @Override
     public void init() {
@@ -22,10 +24,8 @@ public class LoginServlet extends BaseServlet {
     
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) {
-        LoginViewModel vm = new LoginViewModel(null);
-        
         try {
-            view.execute(resp.getWriter(), vm);
+            view.execute(resp.getWriter(), getViewModel());
         } catch (IOException e) {
             getServletContext().log("", e);
         }
@@ -44,13 +44,16 @@ public class LoginServlet extends BaseServlet {
             if(user != null) {
                 resp.sendRedirect("/");
             } else {
-                String error = "Usuario o contraseña incorrecta";
-                LoginViewModel vm = new LoginViewModel(error);
-                
-                view.execute(resp.getWriter(), vm);
+                vm.setError("Usuario o contraseña incorrecta");                
+                view.execute(resp.getWriter(), getViewModel());
             }
         } catch(Exception e) {
             getServletContext().log("", e);
         }
+    }
+    
+    @Override
+    protected BaseViewModel getViewModel() {
+        return vm;
     }
 }

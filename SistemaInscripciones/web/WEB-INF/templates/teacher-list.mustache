@@ -1,7 +1,7 @@
 {{<app-template}}
 {{$app}}
-    <form action="teachers/delete" method="POST">
-        <a href="teachers/add">Agregar Nuevo</a>
+    <form action="{{urlBase}}/teachers?action=delete" method="POST">
+        <a href="{{urlBase}}/teachers/add">Agregar Nuevo</a>
         <button type="submit">Borrar seleccionados</button>
         <table>
             <thead>
@@ -20,7 +20,7 @@
                 <tr>{{lastName}}</tr>
                 <tr>{{email}}</tr>
                 <tr><input type="checkbox" name="delete" value="{{id}}"></tr>
-                <tr><a href="teachers/edit/{{id}}">Modificar</a></tr>
+                <tr><a href="{{urlBase}}/teachers/edit?id={{id}}">Modificar</a></tr>
             {{/teachers}}
             </tbody>
         </table>

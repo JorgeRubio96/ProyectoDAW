@@ -43,6 +43,7 @@ CREATE TABLE class (
     id SERIAL,
     course_id BIGINT UNSIGNED NOT NULL,
     teacher_id BIGINT UNSIGNED NOT NULL,
+    group_number INT NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (course_id) REFERENCES course(id),
     FOREIGN KEY (teacher_id) REFERENCES teacher(id)

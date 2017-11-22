@@ -16,25 +16,30 @@ public class TeacherStore extends BaseStore<Teacher> {
     }
 
     @Override
-    public boolean add(Teacher user) throws SQLException {
+    public boolean add(Teacher teacher) throws SQLException {
         String sql = "INSERT INTO " + TABLE + "(nomina, first_name, last_name, email) VALUES (?, ?, ?, ?)";
         
         PreparedStatement stmt = getDatabase().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         
-        stmt.setString(1, user.getNomina());
-        stmt.setString(2, user.getFirstName());
-        stmt.setString(3, user.getLastName());
-        stmt.setString(4, user.getEmail());
+        stmt.setString(1, teacher.getNomina());
+        stmt.setString(2, teacher.getFirstName());
+        stmt.setString(3, teacher.getLastName());
+        stmt.setString(4, teacher.getEmail());
         
         stmt.executeUpdate();
 
         ResultSet rs = stmt.getGeneratedKeys();
 
         if(rs.next()) {
-            user.setId(rs.getInt(1));
+            teacher.setId(rs.getInt(1));
             return true;
         }
         
+        return false;
+    }
+
+    @Override
+    public boolean update(Teacher bean) throws SQLException {
         return false;
     }
     

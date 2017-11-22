@@ -17,6 +17,10 @@
         <servlet-class>mx.tec.inscripciones.servlet.TeacherListServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>TeacherEditServlet</servlet-name>
+        <servlet-class>mx.tec.inscripciones.servlet.TeacherEditServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>ClassroomServlet</servlet-name>
         <servlet-class>mx.tec.inscripciones.servlet.ClassroomServlet</servlet-class>
     </servlet>
@@ -28,7 +32,6 @@
         <servlet-name>UpdateToDataBaseServlet</servlet-name>
         <servlet-class>mx.tec.inscripciones.servlet.UpdateToDataBaseServlet</servlet-class>
     </servlet>
-    <!-- the mapping for the servlets -->
     <servlet>
         <servlet-name>ClassServlet</servlet-name>
         <servlet-class>mx.tec.inscripciones.servlet.ClassServlet</servlet-class>
@@ -55,13 +58,20 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>TeacherListServlet</servlet-name>
-        <url-pattern>/teachers/*</url-pattern>
+        <url-pattern>/teachers</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TeacherEditServlet</servlet-name>
+        <url-pattern>/teachers/edit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TeacherEditServlet</servlet-name>
+        <url-pattern>/teachers/add</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ClassroomServlet</servlet-name>
         <url-pattern>/ClassroomServlet</url-pattern>
     </servlet-mapping>
-    <!--Config. of the session and cookies-->
     <servlet-mapping>
         <servlet-name>ClassServlet</servlet-name>
         <url-pattern>/ClassServlet</url-pattern>

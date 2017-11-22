@@ -56,7 +56,8 @@ public class ClassStore extends BaseStore<Class> {
         return false;
     }
     
-    public boolean update(Class aClass) throws SQLException{
+    @Override
+    public boolean update(Class aClass) throws SQLException {
        
         String sql = "UPDATE " + TABLE + "SET course_id = ? , teacher_id = ? , "
                 + "group_number = ?  WHERE id = ?";

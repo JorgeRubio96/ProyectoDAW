@@ -65,12 +65,13 @@ public abstract class BaseStore<T> {
 
         return deleted;
     }
-
+    
     protected Connection getDatabase() {
         return dbc;
     }
 
-    public abstract boolean add(T user) throws SQLException;
+    public abstract boolean add(T bean) throws SQLException;
+    public abstract boolean update(T bean) throws SQLException;
     
     protected abstract T makeBean(ResultSet rs) throws SQLException;
 }

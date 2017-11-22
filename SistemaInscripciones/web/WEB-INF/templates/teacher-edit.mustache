@@ -1,0 +1,23 @@
+{{<app-template}}
+{{$app}}
+    <form action="{{urlBase}}/teachers/{{action}}" method="POST">
+        {{#teacher.id}}
+            <input type="hidden" id="id" name="id" value="{{teacher.id}}">
+        {{/teacher.id}}
+        </br>
+        <label for="nomina">Nomina</label>
+        <input id="nomina" name="nomina" value="{{teacher.nomina}}">
+        </br>
+        <label for="first-name">Nombre(s)</label>
+        <input id="first-name" name="first-name" value="{{teacher.firstName}}">
+        </br>
+        <label for="last-name">Apellidos</label>
+        <input id="last-name" name="last-name" value="{{teacher.lastName}}">
+        </br>
+        <label for="email">Email</label>
+        <input id="email" name="email" value="{{teacher.email}}">
+        </br>
+        <button type="submit">Guardar</button>
+    </form>
+{{/app}}
+{{/app-template}}
