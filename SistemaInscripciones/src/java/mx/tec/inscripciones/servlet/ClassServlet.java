@@ -8,7 +8,10 @@ package mx.tec.inscripciones.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+<<<<<<< HEAD
 import java.util.ArrayList;
+=======
+>>>>>>> 2de2b0d42fdc9b85d7ca96af14bf01e7644238f5
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,9 +33,14 @@ import mx.tec.inscripciones.viewmodel.TeacherListViewModel;
 public class ClassServlet extends BaseServlet {
     
     @Override
+<<<<<<< HEAD
     public void doGet(HttpServletRequest req, HttpServletResponse resp) 
         throws ServletException, IOException {
         ClassStore store = null;
+=======
+    public void doGet(HttpServletRequest req, HttpServletResponse resp) {
+        ClassStore store;
+>>>>>>> 2de2b0d42fdc9b85d7ca96af14bf01e7644238f5
         try {
             store = new ClassStore(getDatabaseConnection());
         } catch (SQLException ex) {
@@ -40,6 +48,7 @@ public class ClassServlet extends BaseServlet {
         }
         int teacher_id = Integer.parseInt(req.getParameter("proffs"));
         int course_id = Integer.parseInt(req.getParameter("courses"));
+<<<<<<< HEAD
         int group = Integer.parseInt(req.getParameter("group"));
         String[] time_starth = req.getParameterValues("time_starth");
         String[] time_startm = req.getParameterValues("time_startm");
@@ -55,6 +64,10 @@ public class ClassServlet extends BaseServlet {
             }
         }
         Class classs = new Class(course_id, teacher_id, group, times);
+=======
+        Class aClass;
+        aClass = new Class( teacher_id);
+>>>>>>> 2de2b0d42fdc9b85d7ca96af14bf01e7644238f5
         try {
             if(store.add(classs)) {
                 // Success!
