@@ -1,3 +1,5 @@
+<%@page import="javax.naming.InitialContext"%>
+<%@page import="javax.sql.DataSource"%>
 <%@ include file="/groups/headerGroups.jsp" %>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.util.ArrayList"%>
@@ -26,8 +28,17 @@
                     <option value="5">Estructura de datos</option>
                     <option value="6">Dise&ntilde;o de Algoritmos</option>
                     <%
+                        InitialContext initContext = new InitialContext();
+                    DataSource ds = (DataSource) initContext.lookup("java:/comp/env/jdbc/sistema_inscripciones");
+                    Connection databaseConnection;
+                    databaseConnection = ds.getConnection();
+                    try {
+                        databaseConnection = ds.getConnection();
+                    } catch(Exception e) {
+                        getServletContext().log("", e);
+                    }
                         String sql = "SELECT * FROM course";
-                        PreparedStatement stmt = getDatabase().prepareStatement(sql);
+                        PreparedStatement stmt = databaseConnection.prepareStatement(sql);
                         ResultSet rs = stmt.executeQuery();
                         while(rs.next()) 
                         {
@@ -60,7 +71,7 @@
                     <option value="4">Consuelo Garcia</option>
                     <%
                         String sql2 = "SELECT * FROM teacher";
-                        PreparedStatement stmt2 = getDatabase().prepareStatement(sql);
+                        PreparedStatement stmt2 = databaseConnection.prepareStatement(sql);
                         ResultSet rs2 = stmt2.executeQuery();
                         while(rs2.next()) 
                         {
@@ -87,7 +98,7 @@
                     <option value="5">A3105</option>
                     <%
                         String sql3 = "SELECT * FROM classroom";
-                        PreparedStatement stmt3 = getDatabase().prepareStatement(sql);
+                        PreparedStatement stmt3 = databaseConnection.prepareStatement(sql);
                         ResultSet rs3 = stmt3.executeQuery();
                         while(rs3.next()) 
                         {

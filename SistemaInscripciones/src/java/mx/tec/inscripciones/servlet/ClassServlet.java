@@ -7,7 +7,10 @@ package mx.tec.inscripciones.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -34,10 +37,16 @@ public class ClassServlet extends BaseServlet {
      */
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) {
-        ClassStore store =  new ClassStore(getDatabaseConnection());
+        ClassStore store;
+        try {
+            store = new ClassStore(getDatabaseConnection());
+        } catch (SQLException ex) {
+            Logger.getLogger(ClassServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
         int teacher_id = Integer.parseInt(req.getParameter("proffs"));
         int course_id = Integer.parseInt(req.getParameter("courses"));
-        Class class = new Class();
+        Class aClass;
+        aClass = new Class( teacher_id);
         try {
             if(store.add(classroom)) {
                 // Success!

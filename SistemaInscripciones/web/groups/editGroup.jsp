@@ -1,3 +1,5 @@
+<%@page import="javax.naming.InitialContext"%>
+<%@page import="javax.sql.DataSource"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.Connection"%>
@@ -40,8 +42,17 @@
                 <select v-model="materia">
                     <option></option>
                     <%
+                        InitialContext initContext = new InitialContext();
+                    DataSource ds = (DataSource) initContext.lookup("java:/comp/env/jdbc/sistema_inscripciones");
+                    Connection databaseConnection;
+                    databaseConnection = ds.getConnection();
+                    try {
+                        databaseConnection = ds.getConnection();
+                    } catch(Exception e) {
+                        getServletContext().log("", e);
+                    }
                         String sql = "SELECT * FROM course";
-                        PreparedStatement stmt = getDatabase().prepareStatement(sql);
+                        PreparedStatement stmt = databaseConnection.prepareStatement(sql);
                         ResultSet rs = stmt.executeQuery();
                         while(rs.next()) {
                             int id = rs.getInt("id");
@@ -78,8 +89,9 @@
                 <select v-model="profesor">
                     <option></option>
                     <%
+                        
                         String sql2 = "SELECT * FROM teacher";
-                        PreparedStatement stmt2 = getDatabase().prepareStatement(sql);
+                        PreparedStatement stmt2 = databaseConnection.prepareStatement(sql);
                         ResultSet rs2 = stmt2.executeQuery();
                         while(rs2.next()) {
                             int idProfesor2 = rs2.getInt("id");
@@ -109,7 +121,7 @@
                     <option></option>
                     <%
                         String sql3 = "SELECT * FROM classroom";
-                        PreparedStatement stmt3 = getDatabase().prepareStatement(sql);
+                        PreparedStatement stmt3 = databaseConnection.prepareStatement(sql);
                         ResultSet rs3 = stmt3.executeQuery();
                         while(rs3.next()) {
                             int idSalon2 = rs3.getInt("id");
@@ -139,7 +151,7 @@
                     <select v-model="time.day">
                         <%
                         String sql4 = "SELECT * FROM schedule";
-                        PreparedStatement stmt4 = getDatabase().prepareStatement(sql);
+                        PreparedStatement stmt4 = databaseConnection.prepareStatement(sql);
                         ResultSet rs4 = stmt4.executeQuery();
                         while(rs4.next()) {
                             int idSchedule = rs4.getInt("id");
