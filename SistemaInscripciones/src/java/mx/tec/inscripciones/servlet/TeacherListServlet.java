@@ -2,6 +2,7 @@ package mx.tec.inscripciones.servlet;
 
 import com.github.mustachejava.Mustache;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +27,8 @@ public class TeacherListServlet extends BaseServlet {
     }
     
     @Override
-    public void doGet(HttpServletRequest req, HttpServletResponse resp) {
+    public void doGet(HttpServletRequest req, HttpServletResponse resp)
+            throws IOException {
         String pageString = req.getParameter("page");
         int page = 1;
         
@@ -34,15 +36,18 @@ public class TeacherListServlet extends BaseServlet {
             page = Integer.parseInt(pageString);
                
         try {
-            List<Teacher> teachers = teacherStore.getAll(50, (page - 1) * 50);
+            List<Teacher> teachers = teacherStore.getAll(100, 0);
+            vm.teachers = teachers;
             view.execute(resp.getWriter(), vm);
         } catch (Exception e) {
-            getServletContext().log("", e);
+            resp.sendError(500);
+            //getServletContext().log("", e);
         }
     }
     
     @Override
-    public void doPost(HttpServletRequest req, HttpServletResponse resp) {
+    public void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws IOException {
         if(req.getParameter("action").equals("delete")) {
             String[] ids = req.getParameterValues("delete");
             ArrayList<Integer> deleteIds = new ArrayList<>();

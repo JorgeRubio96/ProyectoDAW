@@ -109,6 +109,8 @@ public class TeacherEditServlet extends BaseServlet {
 
                 if(teacherStore.update(teacher)) {
                     resp.sendRedirect("/teachers");
+                } else {
+
                 }
             } catch(NumberFormatException e) {
                 resp.sendError(400);
@@ -120,6 +122,8 @@ public class TeacherEditServlet extends BaseServlet {
             try {
                 if(teacherStore.add(teacher)) {
                     resp.sendRedirect("/teachers");
+                } else {
+                    resp.sendError(500, "No se registó el camio. Intente de nuevo.");
                 }
             } catch(SQLException e) {
                 getServletContext().log("", e);

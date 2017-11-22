@@ -6,21 +6,24 @@
         <table>
             <thead>
                 <tr>
+                    <th></th>
                     <th>Nomina</th>
                     <th>Nombre(s)</th>
                     <th>Apellidos</th>
                     <th>Email</th>
-                    <th>Actions</th>
+                    <th></th>
                 <tr>
             </thead>
             <tbody>
             {{#teachers}}
-                <tr>{{nomina}}</tr>
-                <tr>{{firstName}}</tr>
-                <tr>{{lastName}}</tr>
-                <tr>{{email}}</tr>
-                <tr><input type="checkbox" name="delete" value="{{id}}"></tr>
-                <tr><a href="{{urlBase}}/teachers/edit?id={{id}}">Modificar</a></tr>
+                <tr>
+                    <td><input type="checkbox" name="delete" value="{{id}}"></td>
+                    <td>{{nomina}}</td>
+                    <td>{{firstName}}</td>
+                    <td>{{lastName}}</td>
+                    <td>{{email}}</td>
+                    <td><a href="{{urlBase}}/teachers/edit?id={{id}}">Modificar</a></td>
+                </tr>
             {{/teachers}}
             </tbody>
         </table>
