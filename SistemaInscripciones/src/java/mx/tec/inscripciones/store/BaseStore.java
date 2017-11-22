@@ -43,7 +43,7 @@ public abstract class BaseStore<T> {
         ArrayList<T> list = new ArrayList<>(n);
 
         Statement stmt = dbc.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM " + table + " LIMIT " + offset + "," + n);
+        ResultSet rs = stmt.executeQuery("SELECT * FROM " + table + " LIMIT " + offset + ", " + n);
 
         while(rs.next()) {
             list.add(makeBean(rs));
