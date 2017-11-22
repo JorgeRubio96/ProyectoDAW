@@ -33,9 +33,10 @@ public class UpdateToDataBaseServlet extends BaseServlet {
         String salon = request.getParameter("classroom");
         int igroupNumber = Integer.parseInt(request.getParameter("numGroup"));
         List<TimeSlot> times;
+        times = (List<TimeSlot>) request.getAttribute("times");
         ServletContext  context = getServletContext();  
  
-        ClassStore classStore;
+        ClassStore classStore = null;
         try {
             classStore = new ClassStore(getDatabaseConnection());
         } catch (SQLException ex) {

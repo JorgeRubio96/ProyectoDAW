@@ -16,9 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import mx.tec.inscripciones.PasswordStorage;
 import mx.tec.inscripciones.model.TimeSlot;
 import mx.tec.inscripciones.model.Class;
-import mx.tec.inscripciones.model.User;
 import mx.tec.inscripciones.store.ClassStore;
-import mx.tec.inscripciones.store.UserStore;
 import mx.tec.inscripciones.viewmodel.BaseViewModel;
 
 @WebServlet(name = "AddToDataBaseServlet", urlPatterns = {"/AddToDataBaseServlet"})
@@ -37,9 +35,15 @@ public class AddToDataBaseServlet extends BaseServlet {
         String salon = request.getParameter("classroom");
         int igroupNumber = Integer.parseInt(request.getParameter("numGroup"));
         List<TimeSlot> times;
+        times = (List<TimeSlot>) request.getAttribute("times");
         ServletContext  context = getServletContext();  
  
-        ClassStore classStore;
+        ClassStore classStore = null;
+        try {
+            classStore = new ClassStore(getDatabaseConnection());
+        } catch (SQLException ex) {
+            Logger.getLogger(AddToDataBaseServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
         try {
             classStore = new ClassStore(getDatabaseConnection());
         } catch (SQLException ex) {
