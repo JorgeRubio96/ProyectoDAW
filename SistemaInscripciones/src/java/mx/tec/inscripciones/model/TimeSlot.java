@@ -20,6 +20,13 @@ public class TimeSlot {
     public TimeSlot(String startTime, String endTime, String day, int classroomId) {
         this(-1, Time.valueOf(startTime), Time.valueOf(endTime), day, classroomId);
     }
+    public int getId() {
+        return id;
+    }
+    
+    public void setId(int id) {
+        this.id = id;
+    }
     
     public Time getStartTime() {
         return startTime;

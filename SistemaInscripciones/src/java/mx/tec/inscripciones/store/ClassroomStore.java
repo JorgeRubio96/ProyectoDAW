@@ -62,7 +62,7 @@ public class ClassroomStore extends BaseStore<Classroom> {
         int id = rs.getInt("id");
         String code = rs.getString("code");
         String building = rs.getString("building");
-        int number = rs.getInt("number");
+        int number = rs.getInt("room");
         
         return new Classroom(id, code, building, number);
     }

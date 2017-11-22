@@ -4,6 +4,7 @@
     Author     : inspiron
 --%>
 
+<%@page import="mx.tec.inscripciones.model.Classroom"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="mx.tec.inscripciones.model.Course"%>
@@ -19,6 +20,20 @@
         <title>Create class</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript">
+            var classrooms;
+            window.onload = function() {
+                classrooms = document.getElementById("classselect").cloneNode(true);
+            }
+            function agregar() {
+                div = document.getElementById("times");
+                div.innerHTML += '<label></label> <input type="number" name="time_starth" min="0" max="23">:<input type="number" name="time_startm" min="0" max="59">-<input type="number" name="time_endh" min="0" max="23">:<input type="number" name="time_endm" min="0" max="59">';
+                div.innerHTML += ' Day: <select name="day"><option value="lu">Lu</option><option value="ma">Ma</option><option value="mi">Mi</option><option value="ju">Ju</option><option value="vi">Vi</option><option value="sa">Sa</option></select> Classroom: '
+                div.appendChild(classrooms);
+                div.innerHTML += "<br>";
+                cont += 1;
+            }
+        </script>
         <style>
             /* -- import Roboto Font ---------------------------- */
             @import "https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic&subset=latin,cyrillic";
@@ -47,7 +62,7 @@
     </head>
     <body>
         <div id="demo">
-        <form action="/ClassServlet">
+        <form action="ClassServlet">
             <label> Course: </label> <select name="courses"><br>
             <%  List<Course> courses = new ArrayList<>();
                 courses = (List<Course>) request.getAttribute("courses");
@@ -57,15 +72,29 @@
             <%}
             %>
             </select><br>
-            <label> Professor:</label> <select name="proffs"><br>
+            <label> Professor: </label> <select name="proffs"><br>
             <%  List<Teacher> teachers = new ArrayList<>();
                 teachers = (List<Teacher>) request.getAttribute("teachers");
                 for (Iterator<Teacher> iter = teachers.iterator(); iter.hasNext();)
             {   Teacher teacher = iter.next();%>
             <option value="<%=teacher.getId()%>"><%=teacher.getFirstName()+" "+teacher.getLastName()%></option>
             <%}
+            %>
+            </select><br>
+            <label> Group Number: </label> <input type="number" name="group" min="1" required><br>
+            <label> Time(s): </label> <input type="number" name="time_starth" min="0" max="23" required>:<input type="number" name="time_startm" min="0" max="59" required>-<input type="number" name="time_endh" min="0" max="23" required>:<input type="number" name="time_endm" min="0" max="59" required>
+            Day: <select name="day"><option value="lu">Lu</option><option value="ma">Ma</option><option value="mi">Mi</option><option value="ju">Ju</option><option value="vi">Vi</option><option value="sa">Sa</option></select>
+            Classroom: <select name="salon" id="classselect">
+            <%  List<Classroom> classrooms = new ArrayList<>();
+                classrooms = (List<Classroom>) request.getAttribute("classrooms");
+                for (Iterator<Classroom> iter = classrooms.iterator(); iter.hasNext();)
+            {   Classroom cr = iter.next();%>
+            <option value="<%=cr.getId()%>"><%=cr.getCode()%></option>
+            <%}
             %> 
             </select><br>
+            <div id="times"></div>
+            <input type="button" value="Add another time slot" onclick="agregar();"><br>
             <input type="submit" value="Create">
         </form>
         </div>
