@@ -82,7 +82,7 @@ public class subjectServlet extends HttpServlet {
         out.println("<td>"+miBean.getNombre()+
                     "</td><td>"+miBean.getCodigo()+
                     "</td><td> "+honors+"</td>");
-        out.prinlntn("</tr>");
+        out.println("</tr>");
       }
       out.println("</table>");
       /*out.println("</body>");
