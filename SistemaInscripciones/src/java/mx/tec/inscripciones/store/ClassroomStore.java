@@ -37,9 +37,9 @@ public class ClassroomStore extends BaseStore<Classroom> {
 
     @Override
     public boolean add(Classroom classroom) throws SQLException {
-        String sql = "INSERT INTO " + TABLE + "(code, building, number) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO " + TABLE + "(code, building, room) VALUES (?, ?, ?)";
         
-        PreparedStatement stmt = getDatabase().prepareStatement(sql);
+        PreparedStatement stmt = getDatabase().prepareStatement(sql,  Statement.RETURN_GENERATED_KEYS);
         
         stmt.setString(1, classroom.getCode());
         stmt.setString(2, classroom.getBuilding());

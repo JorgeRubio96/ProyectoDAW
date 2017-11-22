@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import mx.tec.inscripciones.model.Teacher;
 
@@ -18,7 +19,7 @@ public class TeacherStore extends BaseStore<Teacher> {
     public boolean add(Teacher user) throws SQLException {
         String sql = "INSERT INTO " + TABLE + "(nomina, first_name, last_name, email) VALUES (?, ?, ?, ?)";
         
-        PreparedStatement stmt = getDatabase().prepareStatement(sql);
+        PreparedStatement stmt = getDatabase().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         
         stmt.setString(1, user.getNomina());
         stmt.setString(2, user.getFirstName());

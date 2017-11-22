@@ -17,6 +17,10 @@
         <servlet-class>mx.tec.inscripciones.servlet.TeacherListServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ClassroomServlet</servlet-name>
+        <servlet-class>mx.tec.inscripciones.servlet.ClassroomServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>AddToDataBaseServlet</servlet-name>
         <servlet-class>mx.tec.inscripciones.servlet.AddToDataBaseServlet</servlet-class>
     </servlet>
@@ -25,9 +29,21 @@
         <servlet-class>mx.tec.inscripciones.servlet.UpdateToDataBaseServlet</servlet-class>
     </servlet>
     <!-- the mapping for the servlets -->
+    <servlet>
+        <servlet-name>ClassServlet</servlet-name>
+        <servlet-class>mx.tec.inscripciones.servlet.ClassServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CourseServlet</servlet-name>
+        <servlet-class>mx.tec.inscripciones.servlet.CourseServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetClassroomsAndProfessors</servlet-name>
+        <servlet-class>mx.tec.inscripciones.servlet.GetClassroomsAndProfessors</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainServlet</servlet-name>
-        <url-pattern />
+        <url-pattern/>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -41,7 +57,23 @@
         <servlet-name>TeacherListServlet</servlet-name>
         <url-pattern>/teachers/*</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ClassroomServlet</servlet-name>
+        <url-pattern>/ClassroomServlet</url-pattern>
+    </servlet-mapping>
     <!--Config. of the session and cookies-->
+    <servlet-mapping>
+        <servlet-name>ClassServlet</servlet-name>
+        <url-pattern>/ClassServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CourseServlet</servlet-name>
+        <url-pattern>/CourseServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetClassroomsAndProfessors</servlet-name>
+        <url-pattern>/GetClassroomsAndProfessors</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>
