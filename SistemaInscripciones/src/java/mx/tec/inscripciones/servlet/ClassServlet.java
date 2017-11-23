@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -35,22 +36,17 @@ public class ClassServlet extends BaseServlet {
         int course_id = Integer.parseInt(req.getParameter("courses"));
         int group = Integer.parseInt(req.getParameter("group"));
         
-        String[] time_starth = req.getParameterValues("time_starth");
-        String[] time_startm = req.getParameterValues("time_startm");
-        String[] time_endh = req.getParameterValues("time_endh");
-        String[] time_endm = req.getParameterValues("time_endm");
+        String[] time_start = req.getParameterValues("time_start");
+        String[] time_end = req.getParameterValues("time_end");
         String[] day = req.getParameterValues("day");
         String[] classrooms = req.getParameterValues("salon");
         
         List<TimeSlot> times = new ArrayList();
         
-        for (int i=0; i < time_starth.length; i++) {
-            if (!time_starth[i].isEmpty() &&
-                !time_startm[i].isEmpty() && 
-                !time_endh[i].isEmpty() && 
-                !time_endm[i].isEmpty()) {
-                
-                TimeSlot time = new TimeSlot(time_starth[i]+":"+time_startm[i]+":00", time_endh[i]+":"+time_endm[i]+":00", day[i], Integer.parseInt(classrooms[i]));
+        for (int i=0; i < time_start.length; i++) {
+            if (!time_start[i].isEmpty() &&
+                !time_end[i].isEmpty()) {
+                TimeSlot time = new TimeSlot(time_start[i] + ":00", time_end[i] + ":00", day[i], Integer.parseInt(classrooms[i]));
                 times.add(time);
             }
         }
@@ -58,7 +54,7 @@ public class ClassServlet extends BaseServlet {
         Class classs = new Class(course_id, teacher_id, group, times);
         try {
             if(store.add(classs)) {
-                // Success!
+                resp.sendRedirect("listGroups.jsp");
             } else {
                 // Failure :(
             }

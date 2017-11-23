@@ -27,7 +27,7 @@
             }
             function agregar() {
                 div = document.getElementById("times");
-                div.innerHTML += '<label></label> <input type="number" name="time_starth" min="0" max="23">:<input type="number" name="time_startm" min="0" max="59">-<input type="number" name="time_endh" min="0" max="23">:<input type="number" name="time_endm" min="0" max="59">';
+                div.innerHTML += '<label></label> <input type="time" name="time_start">-<input type="time" name="time_end"';
                 div.innerHTML += ' Day: <select name="day"><option value="lu">Lu</option><option value="ma">Ma</option><option value="mi">Mi</option><option value="ju">Ju</option><option value="vi">Vi</option><option value="sa">Sa</option></select> Classroom: '
                 div.appendChild(classrooms);
                 div.innerHTML += "<br>";
@@ -82,7 +82,7 @@
             %>
             </select><br>
             <label> Group Number: </label> <input type="number" name="group" min="1" required><br>
-            <label> Time(s): </label> <input type="number" name="time_starth" min="0" max="23" required>:<input type="number" name="time_startm" min="0" max="59" required>-<input type="number" name="time_endh" min="0" max="23" required>:<input type="number" name="time_endm" min="0" max="59" required>
+            <label> Time(s): </label> <input type="time" name="time_start" required>-<input type="time" name="time_end" required>
             Day: <select name="day"><option value="lu">Lu</option><option value="ma">Ma</option><option value="mi">Mi</option><option value="ju">Ju</option><option value="vi">Vi</option><option value="sa">Sa</option></select>
             Classroom: <select name="salon" id="classselect">
             <%  List<Classroom> classrooms = new ArrayList<>();

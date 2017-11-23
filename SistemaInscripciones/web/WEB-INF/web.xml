@@ -70,11 +70,11 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ClassroomServlet</servlet-name>
-        <url-pattern>/ClassroomServlet</url-pattern>
+        <url-pattern>/classrooms/ClassroomServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ClassServlet</servlet-name>
-        <url-pattern>/ClassServlet</url-pattern>
+        <url-pattern>/groups/ClassServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CourseServlet</servlet-name>
