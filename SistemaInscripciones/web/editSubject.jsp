@@ -11,7 +11,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Materias disponibles</title>
         <link rel="stylesheet" type="text/css" href="estiloInscripciones.css" />
-        <?php include nav.php ?>
     </head>
     
     <script>

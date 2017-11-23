@@ -66,6 +66,10 @@ public class Course {
         return honors;
     }
 
+    public void getHonors(boolean honors) {
+        this.honors = honors;
+    }
+
     public void setGroupNumber(boolean honors) {
         this.honors = honors;
     }

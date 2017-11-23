@@ -1,0 +1,35 @@
+{{<app-template}}
+{{$app}}
+    <form action="{{urlBase}}/teachers/classes" method="GET">
+        <select name="teacher-id" onchange="this.form.submit()">
+            <option value="-1">Seleccionar Profesor</option>
+            {{#teachers}}
+            <option value="{{id}}">{{firstName}} {{lastName}}</option>
+            {{/teachers}}
+        </select>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Clave</th>
+                <th>Nombre<th>
+                <th>Grupo</th>
+                <th>Horario</th>
+        </thead>
+        <tbody>
+            {{#classes}}
+            <tr>
+                <td>{{second.code}}</td>
+                <td>{{second.title}}</td>
+                <td>{{first.groupNumber}}</td>
+                <td>
+                {{#first.times}}
+                    <span>{{day}} {{startTime} - {{endTime}}}</span>
+                {{/first.times}}
+                </td>
+            </tr>
+            {{/classes}}
+        </tbody>
+    </table>
+{{/app}}
+{{/app-template}}

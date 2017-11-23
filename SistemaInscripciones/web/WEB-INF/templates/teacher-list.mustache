@@ -2,6 +2,7 @@
 {{$app}}
     <form action="{{urlBase}}/teachers?action=delete" method="POST">
         <a href="{{urlBase}}/teachers/add">Agregar Nuevo</a>
+        <br />
         <button type="submit">Borrar seleccionados</button>
         <table>
             <thead>
@@ -22,7 +23,10 @@
                     <td>{{firstName}}</td>
                     <td>{{lastName}}</td>
                     <td>{{email}}</td>
-                    <td><a href="{{urlBase}}/teachers/edit?id={{id}}">Modificar</a></td>
+                    <td>
+                        <a href="{{urlBase}}/teachers/edit?id={{id}}">Modificar</a>
+                        <a href="{{urlBase}}/teachers/classes?teacher-id={{id}}">Ver clases</a>
+                    </td>
                 </tr>
             {{/teachers}}
             </tbody>

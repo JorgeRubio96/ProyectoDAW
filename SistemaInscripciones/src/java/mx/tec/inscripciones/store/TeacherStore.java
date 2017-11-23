@@ -39,9 +39,26 @@ public class TeacherStore extends BaseStore<Teacher> {
     }
 
     @Override
-    public boolean update(Teacher bean) throws SQLException {
-        return false;
-    }
+    public boolean update(Teacher teacher) throws SQLException {
+        String sql = "UPDATE " + TABLE + " SET "
+            + "nomina = ?, "
+            + "first_name = ?, "
+            + "last_name = ?, "
+            + "email = ? "
+            + "WHERE id = ?";
+        
+        PreparedStatement stmt = getDatabase().prepareStatement(sql);
+        
+        stmt.setString(1, teacher.getNomina());
+        stmt.setString(2, teacher.getFirstName());
+        stmt.setString(3, teacher.getLastName());
+        stmt.setString(4, teacher.getEmail());
+        stmt.setInt(5, teacher.getId());
+        
+        int mod = stmt.executeUpdate();
+        
+        return mod > 0;
+        }
     
     @Override
     protected Teacher makeBean(ResultSet rs) throws SQLException {

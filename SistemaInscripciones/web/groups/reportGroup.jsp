@@ -34,6 +34,8 @@
                         + "s.classroom_id = cl.id";
                     PreparedStatement stmt = databaseConnection.prepareStatement(sql);
                     ResultSet rs = stmt.executeQuery();
+
+                    if(rs.next()) {
 %>
 <h1>Reporte de grupos de <%=rs.getString("materia") %></h1>
         <br>
@@ -65,5 +67,6 @@
         </table>
         </form>
         <br>
+<% } %>
         <button onclick="goBack()">Regresar</button>
 <%@ include file="/footer.jsp" %>

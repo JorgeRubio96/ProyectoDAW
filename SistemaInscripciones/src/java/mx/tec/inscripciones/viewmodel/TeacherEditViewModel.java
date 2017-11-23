@@ -18,4 +18,10 @@ public class TeacherEditViewModel extends BaseViewModel {
     public TeacherEditViewModel() {
         this(null);
     }
+
+    public void reset() {
+        teacher = null;
+        errors.clear();
+        action = null;
+    }
 }

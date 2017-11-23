@@ -1,5 +1,11 @@
 {{<app-template}}
 {{$app}}
+    <ul class="error">
+        {{#errors}}
+            <li>{{.}}</\li>
+        {{/errors}}
+    </ul>
+    <a href="{{urlBase}}/teachers">Regresar</a>
     <form action="{{urlBase}}/teachers/{{action}}" method="POST">
         {{#teacher.id}}
             <input type="hidden" id="id" name="id" value="{{teacher.id}}">

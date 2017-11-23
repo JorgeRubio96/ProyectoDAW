@@ -1,3 +1,5 @@
+package mx.tec.inscripciones.servlet;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -14,42 +16,18 @@ import javax.servlet.http.HttpServletResponse;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.List;
+import mx.tec.inscripciones.store.CourseStore;
+import mx.tec.inscripciones.servlet.BaseServlet;
+import mx.tec.inscripciones.model.Course;
 
-/**
- *
- * @author avm
- */
 @WebServlet(urlPatterns = {"/subjectServlet"})
-public class subjectServlet extends HttpServlet {
-  
-  /**
-   * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-   * methods.
-   *
-   * @param request servlet request
-   * @param response servlet response
-   * @throws ServletException if a servlet-specific error occurs
-   * @throws IOException if an I/O error occurs
-   */
+public class subjectServlet extends BaseServlet {
   protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException, SQLException{
     
-    String url = "jdbc:odbc:NAMAE";
-    String username = "guest";
-    String password = "guest";
-    Connection con;
+    Connection con = getDatabaseConnection();
     Statement myStmt;
-    ResultSet myResult= null;
-    
-    try{
-      con= DriverManager.getConnection(url, username, password);
-      myStmt = con.createStatement();
-      myResult=myStmt.executeQuery("SELECT * FROM course;");  
-    }
-    
-    catch(Exception e){
-      System.out.println("ERROR");
-    }
     
     response.setContentType("text/html;charset=UTF-8");
     
@@ -69,18 +47,13 @@ public class subjectServlet extends HttpServlet {
                   "<th>Honores</th>"+
                   "</tr>");
       
-      while ( myResult.next()) {
-        
-        CourseBean miBean= new CourseBean();
-        
-        miBean.setCodigo(myResult.getString("code"));
-        miBean.setNombre(myResult.getString("title"));
-        miBean.setHonores(myResult.getBoolean("honors"));
-        
-        String honors= miBean.getHonores()?"Honors":"Normal";
+      List<Course> courses = new CourseStore(con).getAll();
+
+      for(Course miBean : courses) {        
+        String honors= miBean.getHonors()?"Honors":"Normal";
         out.println("<tr>");
-        out.println("<td>"+miBean.getNombre()+
-                    "</td><td>"+miBean.getCodigo()+
+        out.println("<td>"+miBean.getTitle()+
+                    "</td><td>"+miBean.getCode()+
                     "</td><td> "+honors+"</td>");
         out.println("</tr>");
       }

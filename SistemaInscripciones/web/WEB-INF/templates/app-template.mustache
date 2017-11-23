@@ -1,12 +1,7 @@
 {{<base-template}}
 {{$content}}
     <h1>Proyecto de Sistema de Inscripciones</h1>
-    <nav>
-        <a href="/SistemaInscripciones/groups/listGroups.jsp">Grupos</a>
-        <a href="">Profesores</a>
-        <a href="">Salones</a>
-        <a href="editSubject.jsp">Materias</a>
-    </nav>
+    {{>nav}}
     {{$app}}{{/app}}
 {{/content}}
 {{/base-template}}

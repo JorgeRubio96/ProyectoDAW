@@ -21,35 +21,34 @@
     <body>
         <div id="demo" style="max-width:500px;">
             <h1>Classroom List</h1>
-            <a href="editAddClassroom.jsp">Create classroom</a>
-        <div class="table-responsive-vertical shadow-z-1">
-            <table id="table" class="table table-hover table-mc-light-blue">
-            <thead>
-            <tr>
-                <th>Classroom</th>
-                <th>Building</th>
-                <th>Room</th>
-            </tr>
-            </thead>
-            <tbody>
-            <%
-                InitialContext initContext = new InitialContext();
-                DataSource ds = (DataSource) initContext.lookup("java:/comp/env/jdbc/sistema_inscripciones");
-                ClassroomStore store = new ClassroomStore(ds.getConnection());
-                List<Classroom> salones = store.getAll();
-                for (Classroom cl : salones) {
-            %>
-            <tr>
-                <td data-title="code"><%=cl.getCode()%></td>
-                <td data-title="build"><%=cl.getBuilding()%></td>
-                <td data-title="number"><%=cl.getNumber()%></td>
-                <td data-title="edit"><input type="button" name="edit" value="Edit" onclick=""></td>
-                <td data-title="delete"><input type="button" name="edit" value="Delete" onclick=""></td>
-            </tr>
-           <%}%>
-            </tbody>
-            </table>
-        </div>
+            <a href="/SistemaInscripciones">Inicio</a>
+            <a href="/SistemaInscripciones/editAddClassroom.jsp">Agregar</a>
+            <div class="table-responsive-vertical shadow-z-1">
+                <table id="table" class="table table-hover table-mc-light-blue">
+                <thead>
+                <tr>
+                    <th>Classroom</th>
+                    <th>Building</th>
+                    <th>Room</th>
+                </tr>
+                </thead>
+                <tbody>
+                <%
+                    InitialContext initContext = new InitialContext();
+                    DataSource ds = (DataSource) initContext.lookup("java:/comp/env/jdbc/sistema_inscripciones");
+                    ClassroomStore store = new ClassroomStore(ds.getConnection());
+                    List<Classroom> salones = store.getAll();
+                    for (Classroom salon : salones) {
+                %>
+                <tr>
+                    <td data-title="code"><%=salon.getCode()%></td>
+                    <td data-title="build"><%=salon.getBuilding()%></td>
+                    <td data-title="number"><%=salon.getNumber()%></td>
+                </tr>
+                <%}%>
+                </tbody>
+                </table>
+            </div>
         </div>
     </body>
 </html>

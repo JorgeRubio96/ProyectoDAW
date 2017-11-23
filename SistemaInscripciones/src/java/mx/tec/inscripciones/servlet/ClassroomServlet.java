@@ -24,7 +24,7 @@ public class ClassroomServlet extends BaseServlet {
         
         try {
             if(store.add(classroom)) {
-                response.sendRedirect("listclassrooms.jsp");
+                response.sendRedirect(vm.urlBase + "/listclassrooms.jsp");
             } else {
                 // Failure :(
             }
