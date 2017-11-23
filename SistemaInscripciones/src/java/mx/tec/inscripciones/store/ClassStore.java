@@ -22,7 +22,7 @@ public class ClassStore extends BaseStore<Class> {
         
         String sql = "SELECT * FROM schedule WHERE class_id = ?";
         subStmt = getDatabase().prepareStatement(sql);
-        sql = "INSERT INTO schedule(class_id, classroom_id, day, begin_time, end_time) VALUES (?, ?, ?, ?, ?)";
+        sql = "INSERT INTO schedule(class_id, classroom_id, day, start_time, end_time) VALUES (?, ?, ?, ?, ?)";
         oSubStmt = getDatabase().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
     }
 
@@ -111,7 +111,7 @@ public class ClassStore extends BaseStore<Class> {
             int timeSlotId = subRs.getInt("id");
             int classroomId = subRs.getInt("classroom_id");
             String day = subRs.getString("day");
-            Time beginTime = subRs.getTime("begin_time");
+            Time beginTime = subRs.getTime("start_time");
             Time endTime = subRs.getTime("end_time");
             
             times.add(new TimeSlot(timeSlotId, beginTime, endTime, day, classroomId));

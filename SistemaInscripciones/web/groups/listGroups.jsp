@@ -24,7 +24,7 @@
                 DataSource ds = (DataSource) initContext.lookup("java:/comp/env/jdbc/sistema_inscripciones");
                 Connection databaseConnection = ds.getConnection();
                 String sql = "SELECT course.title as materia, class.group_number as numero, "
-                        + "schedule.day as dia, schedule.begin_time as inicio, schedule.end_time as fin, course.code as code,"
+                        + "schedule.day as dia, schedule.start_time as inicio, schedule.end_time as fin, course.code as code,"
                         + "classroom.building as building, class.id as ID, "
                         + "teacher.first_name as fName, teacher.last_name as lName "
                         + "FROM class, course, teacher, classroom, "

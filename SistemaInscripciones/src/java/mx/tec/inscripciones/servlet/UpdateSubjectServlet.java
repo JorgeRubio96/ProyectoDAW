@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+package mx.tec.inscripciones.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,43 +12,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author avm
- */
-@WebServlet(urlPatterns = {"/updateSubjectServlet"})
-public class updateSubjectServlet extends HttpServlet {
+import mx.tec.inscripciones.servlet.BaseServlet;
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+@WebServlet(urlPatterns = {"/updateSubjectServlet"})
+public class UpdateSubjectServlet extends BaseServlet {
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String url = "jdbc:odbc:NAMAE";
-        String username = "guest";
-        String password = "guest";
-        Connection con;
+        Connection con = getDatabaseConnection();
         Statement myStmt;
         ResultSet myResult= null;
     
         try{
-            con= DriverManager.getConnection(url, username, password);
             myStmt = con.createStatement();
             myResult=myStmt.executeQuery("UPDATE course "
                     +"SET code = "+request.getParameter(", title = ")
                     +request.getParameter("nombre")+", honors = "
                     +request.getParameter("honors")
                     +"WHERE code = "+request.getParameter("code")+";");  
-         }
-    
-        catch(Exception e){
+         } catch(Exception e){
             System.out.println("ERROR");
         }
         response.setContentType("text/html;charset=UTF-8");
@@ -62,43 +41,15 @@ public class updateSubjectServlet extends HttpServlet {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }

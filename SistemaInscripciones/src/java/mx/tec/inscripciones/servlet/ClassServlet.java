@@ -21,7 +21,7 @@ import mx.tec.inscripciones.viewmodel.BaseViewModel;
 
 public class ClassServlet extends BaseServlet {
     @Override
-    public void doPost(HttpServletRequest req, HttpServletResponse resp) 
+    public void doGet(HttpServletRequest req, HttpServletResponse resp) 
         throws ServletException, IOException {
         ClassStore store = null;
         try {
@@ -32,14 +32,14 @@ public class ClassServlet extends BaseServlet {
             return;
         }
 
-        int teacher_id = Integer.parseInt(req.getParameter("profesor"));
-        int course_id = Integer.parseInt(req.getParameter("materia"));
-        int group = Integer.parseInt(req.getParameter("numGroup"));
+        int teacher_id = Integer.parseInt(req.getParameter("proffs"));
+        int course_id = Integer.parseInt(req.getParameter("courses"));
+        int group = Integer.parseInt(req.getParameter("group"));
         
         String[] time_start = req.getParameterValues("time_start");
         String[] time_end = req.getParameterValues("time_end");
         String[] day = req.getParameterValues("day");
-        String[] classrooms = req.getParameterValues("classroom");
+        String[] classrooms = req.getParameterValues("salon");
         
         List<TimeSlot> times = new ArrayList();
         
